@@ -505,7 +505,7 @@ Estado: ⬜ no instalado · 🟡 instalado sin configurar · ✅ instalado y con
 
 | Antes de | Repasar | Por qué |
 |---|---|---|
-| S2 | JTBD y formato de historias Given/When/Then | Base del PRD y del backlog |
+| S2 | JTBD, formato de historias Given/When/Then, qué es un MVP y priorización básica | Base del PRD y del backlog priorizado |
 | S4 | Vitest (si vienes de Jest), mutation testing a nivel conceptual | Detectar falsa cobertura |
 | S5 | Especificación de MCP: tools, resources, transportes | Construir un servidor propio |
 | S7 | Novedades de Next.js 16 (App Router, Server/Client Components); políticas RLS en PostgreSQL | Backend de la sesión |
