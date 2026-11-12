@@ -46,7 +46,7 @@ El vehículo es **TaskFlow AI**, construido lección a lección en un repositori
 | Stack que domina | Full-stack (tecnologías concretas por precisar) |
 | Fecha objetivo | Antes de terminar diciembre de 2026 |
 
-**Ritmo elegido:** 3 sesiones por semana (lunes, miércoles y viernes; sábado de reserva), ~3.3 h por sesión, ~50 h en total. Las 15 sesiones ocupan 5 semanas, del 16 de noviembre al 18 de diciembre, con holgura del 20 al 31 de diciembre. Calendario completo en [`PLAN.md`](PLAN.md).
+**Ritmo elegido:** 3 sesiones por semana (lunes, miércoles y viernes; sábado de reserva), ~3.3 h por sesión, ~50 h en total. Las 15 sesiones van del jueves 12 de noviembre al lunes 14 de diciembre, con holgura del 15 al 31 de diciembre. Calendario completo en [`PLAN.md`](PLAN.md).
 
 ---
 

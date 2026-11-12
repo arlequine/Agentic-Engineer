@@ -22,11 +22,12 @@ Valores del plan actual. Quien lo adapte cambia solo esta tabla y recalcula.
 | Perfil | Full-stack senior |
 | Horas por semana | 10 h |
 | Sesiones por semana | 3 |
-| Días de estudio | Lunes, miércoles y viernes; sábado como reserva |
-| Fecha de inicio | Lunes 2026-11-16 (Semana 0 del 12 al 15 de noviembre) |
+| Días de estudio | Lunes, miércoles y viernes; sábado como reserva (la semana de arranque usa jueves y viernes) |
+| Fecha de inicio | Jueves 2026-11-12 (el repaso de prerrequisitos va en los primeros 30 min de S1) |
+| Fecha de término | Lunes 2026-12-14 (S15) |
 | Fecha objetivo | Antes del 2026-12-31 |
-| Semanas necesarias | 5 + Semana 0 de preparación |
-| Holgura | Del 20 al 31 de diciembre |
+| Semanas necesarias | 5 (más la semana de arranque) |
+| Holgura | Del 15 al 31 de diciembre |
 
 **Horas estimadas por sesión (perfil senior).** Son estimaciones de partida, no medidas. Al cerrar cada sesión, anota las horas reales en la bitácora de `CONTEXT.md` para corregirlas.
 
@@ -44,19 +45,17 @@ Valores del plan actual. Quien lo adapte cambia solo esta tabla y recalcula.
 
 ## 2. Calendario
 
-| Semana | Fechas | Sesiones | Horas | Hito al cerrar la semana |
+| Semana | Fechas | Sesiones | Horas | Checkpoints que se alcanzan |
 |---|---|---|---|---|
-| 0 | 12–15 nov | Preparación | 3–4 | Prerrequisitos de S1 repasados; Paso 3: README, CLAUDE.md y rama `sesion-01-harness` creados |
-| 1 | 16–21 nov | S1 (lun 16) · S2 (mié 18) · S3 (vie 20) | 9 | **Checkpoint Módulo 1**: harness, PRD, backlog y primera historia desde spec |
-| 2 | 23–28 nov | S4 (lun 23) · S5 (mié 25) · S6 (vie 27) | 11.5 ⚠️ | **Checkpoint Módulo 2**: TDD, MCP, skills y guardarraíles en CI |
-| 3 | 30 nov–5 dic | S7 (lun 30) · S8 (mié 2) · S9 (vie 4) | 10 | **Checkpoint Módulo 3**: app completa con E2E; RAG funcionando |
-| 4 | 7–12 dic | S10 (lun 7) · S11 (mié 9) · S12 (vie 11) | 10.5 | **Checkpoint Módulo 4**: agente con memoria, controles y evals |
-| 5 | 14–19 dic | S13 (lun 14) · S14 (mié 16) · S15 (vie 18) | 9 | **Checkpoint Módulos 5 y 6**: pipeline, observabilidad y versión final |
-| Holgura | 20–31 dic | — | — | Recuperar atrasos; sesión abierta del Módulo 6 por cuenta propia |
+| Arranque | 12–14 nov | S1 (jue 12) · S2 (vie 13) | 5.5 | — |
+| 1 | 16–21 nov | S3 (lun 16) · S4 (mié 18) · S5 (vie 20) | 11 ⚠️ | **Módulo 1** (lun 16): harness, PRD, backlog y primera historia desde spec |
+| 2 | 23–28 nov | S6 (lun 23) · S7 (mié 25) · S8 (vie 27) | 11 ⚠️ | **Módulo 2** (lun 23): TDD, MCP, skills y guardarraíles en CI · **Módulo 3** (vie 27): app completa con E2E |
+| 3 | 30 nov–5 dic | S9 (lun 30) · S10 (mié 2) · S11 (vie 4) | 10 | — |
+| 4 | 7–12 dic | S12 (lun 7) · S13 (mié 9) · S14 (vie 11) | 10.5 | **Módulo 4** (lun 7): agente con memoria, controles y evals · **Módulo 5** (vie 11): pipeline y observabilidad |
+| 5 | 14 dic | S15 (lun 14) | 2 | **Módulo 6** (lun 14): versión final |
+| Holgura | 15–31 dic | — | — | Recuperar atrasos; sesión abierta del Módulo 6 por cuenta propia |
 
-⚠️ **La Semana 2 es la más pesada (≈11.5 h).** Usa el sábado 28 de noviembre como reserva o mueve parte de S6 a la holgura.
-
-Nota: S9 (RAG) pertenece al Módulo 4, pero cae en la Semana 3. Así S10–S12 quedan juntas en la Semana 4.
+⚠️ **Las semanas 1 y 2 rondan 11 h**, una más que tu límite. Usa los sábados 21 y 28 de noviembre como reserva, o pasa lo que no alcance a la holgura. La semana de arranque, más ligera, ayuda a llegar con ventaja.
 
 ---
 
@@ -64,7 +63,7 @@ Nota: S9 (RAG) pertenece al Módulo 4, pero cae en la Semana 3. Así S10–S12 q
 
 Formato: **objetivo** · **entregable** (cómo saber que está hecho) · **rama** · **preparación** (de la sección 10 de `CONTEXT.md`).
 
-### Semana 1 · Módulo 1
+### Módulo 1 · S1–S3 (12–16 nov)
 
 | Sesión | Objetivo | Entregable / hecho cuando… | Rama | Preparación |
 |---|---|---|---|---|
@@ -72,7 +71,7 @@ Formato: **objetivo** · **entregable** (cómo saber que está hecho) · **rama*
 | S2 PRD | Pasar del problema al PRD y al backlog | `docs/prd/` versionado; backlog con historias G/W/T, prioridad y dependencias | `sesion-02-prd` | JTBD, G/W/T, MVP y priorización básica |
 | S3 SDD | Implementar una historia desde su spec | `specs/` con una historia implementada que cumple sus criterios | `sesion-03-sdd` | — |
 
-### Semana 2 · Módulo 2
+### Módulo 2 · S4–S6 (18–23 nov)
 
 | Sesión | Objetivo | Entregable / hecho cuando… | Rama | Preparación |
 |---|---|---|---|---|
@@ -80,7 +79,7 @@ Formato: **objetivo** · **entregable** (cómo saber que está hecho) · **rama*
 | S5 MCP y Skills | Extender el harness | Servidor MCP propio conectado; Skill de Tech Lead que produce hallazgos | `sesion-05-mcp-skills` | Especificación MCP |
 | S6 Guardarraíles y evals | Medir si el harness funciona | CI con guardarraíles; evals con/sin harness. Un PR que rompe una regla queda bloqueado | `sesion-06-guardarrailes-evals` | — |
 
-### Semana 3 · Módulo 3 (+ inicio del 4)
+### Módulo 3 · S7–S8 (25–27 nov) y arranque del Módulo 4 · S9 (30 nov)
 
 | Sesión | Objetivo | Entregable / hecho cuando… | Rama | Preparación |
 |---|---|---|---|---|
@@ -88,7 +87,7 @@ Formato: **objetivo** · **entregable** (cómo saber que está hecho) · **rama*
 | S8 Frontend | Del boceto al design system | UI conectada sin errores silenciosos; design system; E2E en verde | `sesion-08-frontend` | — |
 | S9 RAG | Darle memoria propia al producto | Búsqueda semántica que respeta RLS; indexación automática | `sesion-09-rag` | Embeddings; índices vectoriales |
 
-### Semana 4 · Módulo 4
+### Módulo 4 · S10–S12 (2–7 dic)
 
 | Sesión | Objetivo | Entregable / hecho cuando… | Rama | Preparación |
 |---|---|---|---|---|
@@ -96,7 +95,7 @@ Formato: **objetivo** · **entregable** (cómo saber que está hecho) · **rama*
 | S11 Memoria | Memoria y aprobación humana | Retoma conversaciones; pausa ante acciones sensibles | `sesion-11-memoria` | — |
 | S12 Controles | Controlar y evaluar el agente | Middleware y controles activos; trazas; 20 casos evaluados con juez | `sesion-12-controles-evals` | OWASP para LLM |
 
-### Semana 5 · Módulos 5 y 6
+### Módulos 5 y 6 · S13–S15 (9–14 dic)
 
 | Sesión | Objetivo | Entregable / hecho cuando… | Rama | Preparación |
 |---|---|---|---|---|
