@@ -22,10 +22,10 @@
 
 | Campo | Valor |
 |---|---|
-| Lección en curso | Ninguna (preparación) |
+| Lección en curso | Ninguna. Sesión 1 preparada en la rama `sesion-01-harness` |
 | Última lección completada | Ninguna: aún no se ha completado ninguna lección |
 | Última actualización | 2026-11-11 |
-| Siguiente paso concreto | Semana 0 (12–15 nov): repasar prerrequisitos de S1 y hacer el Paso 3, estructura inicial del repo (README, CLAUDE.md, carpeta de la Sesión 1) en la rama `sesion-01-harness`. S1 arranca el lunes 16 de noviembre (ver [`PLAN.md`](PLAN.md)) |
+| Siguiente paso concreto | Jueves 12 nov: iniciar la Sesión 1 en `sesion-01-harness`, empezando por el repaso de prerrequisitos (conceptos de LLM y Claude Code instalado). Guía en `docs/lessons/sesion-01-harness/README.md` |
 | Progreso | 0 / 15 sesiones listadas (ver nota del Módulo 6) |
 
 ---
@@ -380,8 +380,19 @@ La salida de cada sesión es la entrada de la siguiente. Columnas: **Punto de pa
 
 ```
 Agentic-Engineer/        (rama main)
+├── CLAUDE.md            # versión mínima; se amplía en S1
 ├── CONTEXT.md
-└── PLAN.md
+├── PLAN.md
+└── README.md
+```
+
+Rama `sesion-01-harness` (además de lo anterior):
+
+```
+docs/
+└── lessons/
+    └── sesion-01-harness/
+        └── README.md    # guía de la sesión: temas, ejercicios, entregable, notas
 ```
 
 ### Estrategia de ramas (una rama por sesión)
@@ -450,7 +461,13 @@ Agentic-Engineer/
 
 > De la más reciente a la más antigua. Añadir entradas arriba; nunca reescribir las anteriores.
 
-_Sin entradas todavía._
+### 2026-11-11 · Preparación (Pasos 1–3)
+- **Agregado al repositorio:** `CONTEXT.md`, `PLAN.md`, `README.md` y `CLAUDE.md` mínimo en `main`; rama `sesion-01-harness` con `docs/lessons/sesion-01-harness/README.md`.
+- **Decisiones tomadas:** 3 sesiones por semana (~3.3 h c/u, ~50 h en total) para terminar antes de fin de diciembre; una rama por sesión que se conserva tras el PR; la sesión restante del Módulo 6 queda abierta; el plan se diseñó para que otra persona pueda adaptarlo; `CLAUDE.md` se deja mínimo porque diseñarlo es parte de S1.
+- **Dudas pendientes:** precisar el stack concreto del estudiante para ajustar repasos (sobre todo antes de S7).
+- **Aprendizajes clave:** —
+- **Entregable verificado:** sí — los cuatro archivos están en `main` y la rama de S1 existe en el remoto.
+- **Horas reales:** — (preparación, no cuenta en el plan)
 
 ### Plantilla
 
