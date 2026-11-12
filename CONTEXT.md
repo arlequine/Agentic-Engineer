@@ -25,7 +25,7 @@
 | Lección en curso | Ninguna (preparación) |
 | Última lección completada | Ninguna: aún no se ha completado ninguna lección |
 | Última actualización | 2026-11-11 |
-| Siguiente paso concreto | Paso 2: definir el plan de estudio semanal. Después, Paso 3: estructura inicial del repo (README, CLAUDE.md, carpeta de la Sesión 1) |
+| Siguiente paso concreto | Paso 2: definir el plan de estudio semanal (~2 sesiones/semana hasta fin de diciembre). Después, Paso 3: estructura inicial del repo (README, CLAUDE.md, carpeta de la Sesión 1) en la rama `sesion-01-harness` |
 | Progreso | 0 / 15 sesiones listadas (ver nota del Módulo 6) |
 
 ---
@@ -41,10 +41,12 @@ El vehículo es **TaskFlow AI**, construido lección a lección en un repositori
 
 | Campo | Valor |
 |---|---|
-| Nivel actual | [pendiente: ej. full-stack intermedio, uso básico de Claude Code] |
-| Tiempo disponible | [pendiente: ej. 6 h/semana] |
-| Stack que domina | [pendiente: ej. TypeScript, React, Node] |
-| Fecha objetivo | [pendiente: ej. marzo 2027] |
+| Nivel actual | Full-stack senior |
+| Tiempo disponible | Hasta 10 h/semana |
+| Stack que domina | Full-stack (tecnologías concretas por precisar) |
+| Fecha objetivo | Antes de terminar diciembre de 2026 |
+
+**Capacidad estimada:** del 2026-11-11 al 2026-12-31 hay ~7 semanas → ~70 h para 15 sesiones ≈ **4.5 h por sesión** (unas 2 sesiones por semana). Es un ritmo exigente; el plan semanal (Paso 2) prioriza los entregables de cada sesión sobre la profundidad opcional.
 
 ---
 
@@ -173,7 +175,7 @@ Leyenda: `[ ]` pendiente · `[~]` en curso · `[x]` completada
   - Incidente simulado: de seguridad o una regresión que detectan las evals y los guardarraíles
   - Congelamiento del código y versión final
 
-> **Nota:** el temario indica 2 sesiones y 9 temas para el Módulo 6, pero solo incluye la Sesión 15 (5 temas). La sesión restante (presumiblemente el Demo Day) queda **pendiente de confirmar**; no se completa aquí para no inventar contenido.
+> **Nota:** el temario indica 2 sesiones y 9 temas para el Módulo 6, pero solo incluye la Sesión 15 (5 temas). La sesión restante (presumiblemente el Demo Day) queda **abierta por decisión del estudiante**: se completará por cuenta propia como estudio continuo. No se planifica ni se cuenta en el progreso hasta que tenga contenido.
 
 ---
 
@@ -352,14 +354,14 @@ La salida de cada sesión es la entrada de la siguiente. Columnas: **Punto de pa
 
 | Sesión | Punto de partida | Qué se construye | Entregable de salida / verificación | Conexión |
 |---|---|---|---|---|
-| **S15** War Room | Todo el sistema en producción | Repaso del flujo; casos límite y depuración; funcionalidad urgente de spec a producción; incidente simulado detectado por evals/guardarraíles; code freeze | Funcionalidad nueva en producción vía pipeline; postmortem del incidente; versión final etiquetada. ✔ el incidente se detectó automáticamente | Versión final para la sesión restante del módulo (pendiente de confirmar) |
-| **S16?** | Pendiente de confirmar | Pendiente de confirmar | Pendiente de confirmar | — |
+| **S15** War Room | Todo el sistema en producción | Repaso del flujo; casos límite y depuración; funcionalidad urgente de spec a producción; incidente simulado detectado por evals/guardarraíles; code freeze | Funcionalidad nueva en producción vía pipeline; postmortem del incidente; versión final etiquetada. ✔ el incidente se detectó automáticamente | Versión final para la sesión restante del módulo (abierta) |
+| **S16?** | Abierta: estudio por cuenta propia | Abierta | Abierta | — |
 
 **Checkpoint Módulo 6**
 
 | Sesión | Qué funciona ya | Qué falta |
 |---|---|---|
-| S15 | Flujo completo probado bajo presión; versión final | Confirmar contenido de la sesión restante |
+| S15 | Flujo completo probado bajo presión; versión final | Sesión restante abierta (estudio por cuenta propia) |
 
 ### Resumen por módulo
 
@@ -377,9 +379,25 @@ La salida de cada sesión es la entrada de la siguiente. Columnas: **Punto de pa
 ### Actual (solo lo que existe)
 
 ```
-Agentic-Engineer/
+Agentic-Engineer/        (rama main)
 └── CONTEXT.md
 ```
+
+### Estrategia de ramas (una rama por sesión)
+
+Cada sesión vive en su propia rama, que queda como foto del estado del proyecto al cerrar esa sesión.
+
+| Rama | Propósito |
+|---|---|
+| `main` | Estado más reciente y estable. Recibe cada sesión cerrada mediante PR. |
+| `sesion-NN-slug` | Trabajo de la sesión N (ej. `sesion-01-harness`, `sesion-02-prd`). Se crea desde `main` al iniciar la sesión. |
+
+Flujo por sesión:
+1. Al iniciar: `git switch main && git pull && git switch -c sesion-NN-slug`.
+2. Durante: commits pequeños en la rama de la sesión.
+3. Al cerrar: actualizar `CONTEXT.md` en la rama, abrir PR `sesion-NN-slug → main` y hacer merge **sin borrar la rama**, para conservar la foto de esa sesión.
+
+Ramas previstas: `sesion-01-harness`, `sesion-02-prd`, `sesion-03-sdd`, `sesion-04-tdd`, `sesion-05-mcp-skills`, `sesion-06-guardarrailes-evals`, `sesion-07-backend`, `sesion-08-frontend`, `sesion-09-rag`, `sesion-10-agente`, `sesion-11-memoria`, `sesion-12-controles-evals`, `sesion-13-seguridad`, `sesion-14-cicd-observabilidad`, `sesion-15-war-room`.
 
 ### Objetivo (referencia, se irá construyendo)
 
@@ -477,18 +495,24 @@ Estado: ⬜ no instalado · 🟡 instalado sin configurar · ✅ instalado y con
 
 ## 10. Prerrequisitos
 
-> Ajustar cuando se complete el [perfil](#2-perfil-del-estudiante).
+> Adaptado a perfil full-stack senior: se da por dominado lo general (TypeScript, React, Node, Git, HTTP, testing básico). El repaso se concentra en lo específico del temario. Cada bloque es un repaso corto (≤1 h), no un curso.
 
-- **TypeScript:** tipos, genéricos, async/await, módulos.
-- **React:** componentes, hooks, estado; noción de renderizado en servidor.
-- **Node y npm/pnpm:** scripts, dependencias, variables de entorno.
-- **Git y GitHub:** ramas, PRs, revisión, rebase/merge básico.
-- **SQL y PostgreSQL:** tablas, joins, índices, transacciones; idea de políticas de acceso.
-- **Testing:** diferencias unitario / integración / E2E; asserts y mocks.
-- **HTTP y APIs:** REST, JSON, autenticación por tokens.
-- **Terminal:** navegación, permisos, procesos.
-- **Conceptos de LLM:** tokens, ventana de contexto, temperatura, tool use.
-- **Producto (S2):** qué es un MVP, priorización básica.
+**Antes de la Sesión 1 (imprescindible)**
+- **Conceptos de LLM aplicados:** tokens, ventana de contexto y su degradación, tool use, costo por token.
+- **Claude Code instalado y probado:** sesión básica, permisos, lectura de un repo pequeño.
+
+**Antes de cada bloque (repaso puntual)**
+
+| Antes de | Repasar | Por qué |
+|---|---|---|
+| S2 | JTBD y formato de historias Given/When/Then | Base del PRD y del backlog |
+| S4 | Vitest (si vienes de Jest), mutation testing a nivel conceptual | Detectar falsa cobertura |
+| S5 | Especificación de MCP: tools, resources, transportes | Construir un servidor propio |
+| S7 | Novedades de Next.js 16 (App Router, Server/Client Components); políticas RLS en PostgreSQL | Backend de la sesión |
+| S9 | Embeddings, similitud coseno, índices vectoriales (HNSW/IVFFlat) | RAG con pgvector |
+| S10 | Modelo de LangGraph: grafo, estado, nodos, aristas | Bucle del agente con StateGraph |
+| S12–S13 | OWASP Top 10 para aplicaciones con LLM; prompt injection | Controles y reporte de seguridad |
+| S14 | SLOs/SLIs, Core Web Vitals | Observabilidad y puertas del pipeline |
 
 ---
 
@@ -504,3 +528,5 @@ Estado: ⬜ no instalado · 🟡 instalado sin configurar · ✅ instalado y con
 8. **Actualizar este documento al cierre:** estado actual, casilla de progreso, estructura del repo, stack y nueva entrada de bitácora; mostrar el diff antes de darlo por bueno.
 9. **Conservar la bitácora:** solo se agregan entradas, nunca se reescriben.
 10. **Idioma:** español; Markdown limpio.
+11. **Una rama por sesión:** trabajar siempre en `sesion-NN-slug`, nunca directo en `main`; cerrar con PR a `main` sin borrar la rama (ver [Estrategia de ramas](#estrategia-de-ramas-una-rama-por-sesión)).
+12. **Ritmo:** ~4.5 h por sesión. Si una sesión excede su tiempo, proponer qué recortar (marcado como *opcional*) en lugar de alargarla.
