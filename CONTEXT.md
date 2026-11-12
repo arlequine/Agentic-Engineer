@@ -25,7 +25,7 @@
 | Lección en curso | Ninguna (preparación) |
 | Última lección completada | Ninguna: aún no se ha completado ninguna lección |
 | Última actualización | 2026-11-11 |
-| Siguiente paso concreto | Paso 2: definir el plan de estudio semanal (~2 sesiones/semana hasta fin de diciembre). Después, Paso 3: estructura inicial del repo (README, CLAUDE.md, carpeta de la Sesión 1) en la rama `sesion-01-harness` |
+| Siguiente paso concreto | Semana 0 (12–15 nov): repasar prerrequisitos de S1 y hacer el Paso 3, estructura inicial del repo (README, CLAUDE.md, carpeta de la Sesión 1) en la rama `sesion-01-harness`. S1 arranca el lunes 16 de noviembre (ver [`PLAN.md`](PLAN.md)) |
 | Progreso | 0 / 15 sesiones listadas (ver nota del Módulo 6) |
 
 ---
@@ -46,7 +46,7 @@ El vehículo es **TaskFlow AI**, construido lección a lección en un repositori
 | Stack que domina | Full-stack (tecnologías concretas por precisar) |
 | Fecha objetivo | Antes de terminar diciembre de 2026 |
 
-**Capacidad estimada:** del 2026-11-11 al 2026-12-31 hay ~7 semanas → ~70 h para 15 sesiones ≈ **4.5 h por sesión** (unas 2 sesiones por semana). Es un ritmo exigente; el plan semanal (Paso 2) prioriza los entregables de cada sesión sobre la profundidad opcional.
+**Ritmo elegido:** 3 sesiones por semana (lunes, miércoles y viernes; sábado de reserva), ~3.3 h por sesión, ~50 h en total. Las 15 sesiones ocupan 5 semanas, del 16 de noviembre al 18 de diciembre, con holgura del 20 al 31 de diciembre. Calendario completo en [`PLAN.md`](PLAN.md).
 
 ---
 
@@ -380,7 +380,8 @@ La salida de cada sesión es la entrada de la siguiente. Columnas: **Punto de pa
 
 ```
 Agentic-Engineer/        (rama main)
-└── CONTEXT.md
+├── CONTEXT.md
+└── PLAN.md
 ```
 
 ### Estrategia de ramas (una rama por sesión)
@@ -460,6 +461,7 @@ _Sin entradas todavía._
 - **Dudas pendientes:** …
 - **Aprendizajes clave:** …
 - **Entregable verificado:** sí / no — cómo se verificó
+- **Horas reales:** X h (estimadas en PLAN.md: Y h)
 ```
 
 ---
@@ -529,4 +531,4 @@ Estado: ⬜ no instalado · 🟡 instalado sin configurar · ✅ instalado y con
 9. **Conservar la bitácora:** solo se agregan entradas, nunca se reescriben.
 10. **Idioma:** español; Markdown limpio.
 11. **Una rama por sesión:** trabajar siempre en `sesion-NN-slug`, nunca directo en `main`; cerrar con PR a `main` sin borrar la rama (ver [Estrategia de ramas](#estrategia-de-ramas-una-rama-por-sesión)).
-12. **Ritmo:** ~4.5 h por sesión. Si una sesión excede su tiempo, proponer qué recortar (marcado como *opcional*) en lugar de alargarla.
+12. **Ritmo:** ~3.3 h por sesión según [`PLAN.md`](PLAN.md); registrar las horas reales en la bitácora. Si una sesión excede su tiempo, proponer qué recortar (marcado como *opcional*) en lugar de alargarla.
