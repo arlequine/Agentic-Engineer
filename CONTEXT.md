@@ -22,11 +22,11 @@
 
 | Campo | Valor |
 |---|---|
-| Lección en curso | Ninguna. Sesión 1 preparada en la rama `sesion-01-harness` |
-| Última lección completada | Ninguna: aún no se ha completado ninguna lección |
-| Última actualización | 2026-11-11 |
-| Siguiente paso concreto | Jueves 12 nov: iniciar la Sesión 1 en `sesion-01-harness`, empezando por el repaso de prerrequisitos (conceptos de LLM y Claude Code instalado). Guía en `docs/lessons/sesion-01-harness/README.md` |
-| Progreso | 0 / 15 sesiones listadas (ver nota del Módulo 6) |
+| Lección en curso | Ninguna. Sesión 1 cerrada; Sesión 2 por iniciar |
+| Última lección completada | Sesión 1 · Harness Engineering (PR #1 fusionado en `main`) |
+| Última actualización | 2026-11-12 |
+| Siguiente paso concreto | Viernes 13 nov: iniciar la Sesión 2 creando `sesion-02-prd` desde `main` (`git switch main && git pull --ff-only && git switch -c sesion-02-prd`) y su guía en `docs/lessons/sesion-02-prd/README.md` |
+| Progreso | 1 / 15 sesiones listadas (ver nota del Módulo 6) |
 
 ---
 
@@ -56,7 +56,7 @@ Leyenda: `[ ]` pendiente · `[~]` en curso · `[x]` completada
 
 ### Módulo 1 · Desarrollo con agentes de IA (3 sesiones · 15 temas)
 
-- [ ] **Sesión 1. Harness Engineering: el entorno de trabajo del agente**
+- [x] **Sesión 1. Harness Engineering: el entorno de trabajo del agente**
   - Claude Code pieza por pieza: CLAUDE.md, skills, hooks, subagentes, plan mode y MCP
   - Qué es un harness y por qué cambia el resultado al trabajar con agentes
   - Demo comparada: la misma tarea de TaskFlow AI con y sin harness
@@ -379,20 +379,28 @@ La salida de cada sesión es la entrada de la siguiente. Columnas: **Punto de pa
 ### Actual (solo lo que existe)
 
 ```
-Agentic-Engineer/        (rama main)
-├── CLAUDE.md            # versión mínima; se amplía en S1
+Agentic-Engineer/                    (rama main, tras S1)
+├── CLAUDE.md                        # reglas de trabajo con el agente
 ├── CONTEXT.md
 ├── PLAN.md
-└── README.md
-```
-
-Rama `sesion-01-harness` (además de lo anterior):
-
-```
-docs/
-└── lessons/
-    └── sesion-01-harness/
-        └── README.md    # guía de la sesión: temas, ejercicios, entregable, notas
+├── README.md
+├── .mcp.json                        # servidor MCP Playwright (ámbito proyecto)
+├── .claude/
+│   ├── settings.json                # registro de hooks
+│   ├── agents/
+│   │   └── pr-review.md             # subagente de revisión (solo lectura)
+│   ├── hooks/
+│   │   ├── estado-actual.sh         # SessionStart: inyecta el estado actual
+│   │   ├── proteger-git.sh          # PreToolUse: protege main, ramas y merges
+│   │   └── test-proteger-git.sh     # prueba de regresión del hook
+│   └── skills/
+│       └── cierre-de-sesion/
+│           └── SKILL.md             # cierre de sesión por fases
+└── docs/
+    └── lessons/
+        └── sesion-01-harness/
+            ├── README.md            # guía de la sesión
+            └── comparativa.md       # misma tarea con y sin harness
 ```
 
 ### Estrategia de ramas (una rama por sesión)
@@ -461,6 +469,14 @@ Agentic-Engineer/
 
 > De la más reciente a la más antigua. Añadir entradas arriba; nunca reescribir las anteriores.
 
+### 2026-11-12 · Sesión 1 — Harness Engineering: el entorno de trabajo del agente
+- **Agregado al repositorio:** `CLAUDE.md` con las reglas de trabajo; hooks `PreToolUse` (`proteger-git.sh`, con prueba de regresión de 35 casos) y `SessionStart` (`estado-actual.sh`); skill `cierre-de-sesion`; subagente `pr-review`; `.mcp.json` con Playwright; `docs/lessons/sesion-01-harness/comparativa.md`.
+- **Decisiones tomadas:** corregir los huecos del hook (seguimiento de rama, `pull` con merge, push de `HEAD` a `main`) antes del merge, porque es la garantía que promete el harness; configurar MCP en esta sesión con un servidor existente y dejar el servidor propio para S5, porque el temario reparte `.mcp.json` entre S1 y S5; usar `docs/vision.md` como tarea de la comparativa, porque aún no hay código y la tarea pone a prueba rama, commits, alcance y confirmación.
+- **Dudas pendientes:** temas de la sesión no trabajados de forma explícita, quedan como lectura pendiente: «Panorama de agentes de código y criterio para elegir entre ellos» y *plan mode*.
+- **Aprendizajes clave:** la organización del harness y el porqué de cada carpeta (`.claude/skills`, `.claude/hooks`, `.claude/agents`, `.mcp.json`); lo versátil que es `CLAUDE.md` para cambiar el comportamiento del agente sin tocar el modelo.
+- **Entregable verificado:** sí — archivos del harness y comparativa en `main`; PR #1 con plan, implementación y revisión automática de `pr-review` publicada como comentario; fusionado manualmente.
+- **Horas reales:** 3 h (estimadas en PLAN.md: 2.5 h)
+
 ### 2026-11-11 · Preparación (Pasos 1–3)
 - **Agregado al repositorio:** `CONTEXT.md`, `PLAN.md`, `README.md` y `CLAUDE.md` mínimo en `main`; rama `sesion-01-harness` con `docs/lessons/sesion-01-harness/README.md`.
 - **Decisiones tomadas:** 3 sesiones por semana (~3.3 h c/u, ~50 h en total) para terminar antes de fin de diciembre; una rama por sesión que se conserva tras el PR; la sesión restante del Módulo 6 queda abierta; el plan se diseñó para que otra persona pueda adaptarlo; `CLAUDE.md` se deja mínimo porque diseñarlo es parte de S1.
@@ -489,9 +505,9 @@ Estado: ⬜ no instalado · 🟡 instalado sin configurar · ✅ instalado y con
 
 | Categoría | Herramienta | Sesión | Estado |
 |---|---|---|---|
-| Agente de código | Claude Code (CLAUDE.md, skills, hooks, subagentes, plan mode) | S1 | ⬜ |
-| Protocolos | Model Context Protocol (MCP) | S1, S5, S10 | ⬜ |
-| Control de versiones / CI | Git, GitHub, GitHub Actions | S1, S6, S14 | ⬜ |
+| Agente de código | Claude Code (CLAUDE.md, skills, hooks, subagentes, plan mode) | S1 | ✅ |
+| Protocolos | Model Context Protocol (MCP) | S1, S5, S10 | 🟡 |
+| Control de versiones / CI | Git, GitHub, GitHub Actions | S1, S6, S14 | 🟡 |
 | Testing | Vitest | S4 | ⬜ |
 | Testing | Playwright | S8, S14 | ⬜ |
 | Framework web | Next.js 16 (App Router), React | S7, S8 | ⬜ |
