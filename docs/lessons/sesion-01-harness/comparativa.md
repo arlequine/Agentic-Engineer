@@ -9,7 +9,7 @@
 | Repositorio | Clon de `sesion-01-harness` sin `CLAUDE.md`, `.claude/` ni `.mcp.json` | Clon de `sesion-01-harness` tal cual |
 | Remote | Eliminado (no puede tocar GitHub) | Eliminado |
 | Rama inicial | `sesion-01-harness` | `sesion-01-harness` |
-| Modelo | `claude-opus-5-5` | `claude-opus-5-5` |
+| Modelo | `claude-opus-5-5` | `claude-opus-5-5` (el subagente `pr-review` usa `sonnet`, pero no intervino en el experimento) |
 
 Configuración de usuario común a ambos: sin `~/.claude/CLAUDE.md` ni hooks de usuario; el servidor MCP de Playwright (ámbito `user`) está disponible en los dos.
 
