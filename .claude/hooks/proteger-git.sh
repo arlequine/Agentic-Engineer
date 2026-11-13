@@ -2,14 +2,20 @@
 # Hook PreToolUse (matcher: Bash) — protege el flujo de Git del repositorio.
 #
 #   deny (exit 2): commit en main, push a main, borrado de ramas y cualquier
-#                  merge (git merge en cualquier rama, gh pr merge). Los PR
-#                  los aprueba y fusiona el estudiante manualmente en GitHub.
-#   ask  (JSON)  : rebase, cherry-pick, tags, push --force, reset --hard,
-#                  renombrar ramas.
+#                  merge (git merge en cualquier rama, gh pr merge, git pull
+#                  sin --ff-only). Los PR los aprueba y fusiona el estudiante
+#                  manualmente en GitHub.
+#   ask  (JSON)  : rebase, pull --rebase, cherry-pick, tags, push --force,
+#                  reset --hard, renombrar ramas.
 #
 # Límites conocidos: analiza el TEXTO del comando. No ve lo que ocurre dentro
 # de `eval`, scripts .sh ni alias de git. Protege contra errores del agente,
 # no contra quien quiera saltárselo a propósito.
+#   - Parte segmentos por ; | && también dentro de comillas (posibles falsos
+#     bloqueos, p. ej. `git commit -m "a; git merge"`).
+#   - Una rama creada en el mismo comando (`git branch x && git checkout x`)
+#     aún no existe al evaluar: se trata como ruta y la rama no cambia
+#     (falso bloqueo si se estaba en main; usa `git switch -c x`).
 
 set -uo pipefail
 
@@ -54,8 +60,45 @@ while IFS= read -r segmento; do
 
   case "$sub" in
     checkout|switch)
-      # Cambio de rama dentro del mismo comando
-      if tiene main; then rama=main; elif ((${#no_flags[@]})); then rama=otra; fi ;;
+      # Seguir la rama si el comando cambia de rama antes de un commit.
+      #   -b/-c x [base] -> x         -- archivo     -> no cambia
+      #   rama existente -> esa rama  commit (sha)   -> HEAD separado
+      #   cualquier otra palabra es una ruta         -> no cambia
+      destino=""
+      for ((j = 0; j < ${#args[@]}; j++)); do
+        case "${args[j]}" in
+          -b|-B|-c|-C|--create|--force-create|--orphan) destino=${args[j+1]:-otra}; break ;;
+        esac
+      done
+      if [[ -z "$destino" ]] && ! tiene --; then
+        for x in "${args[@]}"; do
+          if [[ "$x" == - ]]; then
+            destino=$(git -C "${cwd:-.}" rev-parse --abbrev-ref '@{-1}' 2>/dev/null || echo otra); break
+          fi
+          [[ "$x" == -* ]] && continue
+          [[ "$x" == HEAD ]] && break
+          if git -C "${cwd:-.}" show-ref --verify --quiet "refs/heads/$x"; then
+            destino=$x
+          elif git -C "${cwd:-.}" rev-parse --verify --quiet "$x^{commit}" >/dev/null; then
+            destino=otra
+          fi
+          break
+        done
+      fi
+      [[ -n "$destino" ]] && rama=$destino ;;
+
+    pull)
+      # pull sin --ff-only puede crear un merge; con --rebase reescribe historia
+      ff=0; reb=0
+      for x in "${args[@]}"; do
+        case "$x" in
+          --ff-only) ff=1 ;;
+          -r|--rebase|--rebase=true|--rebase=merges|--rebase=interactive) reb=1 ;;
+          --no-rebase|--rebase=false) reb=0 ;;
+        esac
+      done
+      if ((reb)); then preguntar+=("pull --rebase reescribe historia")
+      elif ((!ff)); then denegar+=("pull puede crear un merge (usa git pull --ff-only)"); fi ;;
 
     commit)
       [[ "$rama" == main ]] && denegar+=("commit en main") ;;
