@@ -16,6 +16,9 @@
 #   - Una rama creada en el mismo comando (`git branch x && git checkout x`)
 #     aún no existe al evaluar: se trata como ruta y la rama no cambia
 #     (falso bloqueo si se estaba en main; usa `git switch -c x`).
+#   - La rama actual se calcula con el `cwd` de la sesión. No sigue `git -C
+#     otro-repo` ni `cd otro-repo &&`: un commit así en el main de OTRO repo
+#     no se detecta. El agente trabaja en este repo, así que no se resuelve.
 
 set -uo pipefail
 
@@ -89,15 +92,17 @@ while IFS= read -r segmento; do
 
     pull)
       # pull sin --ff-only puede crear un merge; con --rebase reescribe historia
-      ff=0; reb=0
+      ff=0; reb=0; noff=0
       for x in "${args[@]}"; do
         case "$x" in
           --ff-only) ff=1 ;;
+          --no-ff) noff=1 ;;
           -r|--rebase|--rebase=true|--rebase=merges|--rebase=interactive) reb=1 ;;
           --no-rebase|--rebase=false) reb=0 ;;
         esac
       done
-      if ((reb)); then preguntar+=("pull --rebase reescribe historia")
+      if ((noff)); then denegar+=("pull --no-ff fuerza un merge")
+      elif ((reb)); then preguntar+=("pull --rebase reescribe historia")
       elif ((!ff)); then denegar+=("pull puede crear un merge (usa git pull --ff-only)"); fi ;;
 
     commit)
@@ -113,8 +118,11 @@ while IFS= read -r segmento; do
       if tiene --delete || tiene -d; then denegar+=("borrar rama remota (push --delete)"); fi
       for x in "${no_flags[@]}"; do
         [[ "$x" == :* ]] && denegar+=("borrar rama remota (push origin :rama)")
-        [[ "$x" == main || "$x" == +main || "$x" == *:main ]] && denegar+=("push a main")
         [[ "$x" == +* ]] && preguntar+=("push forzado (+refspec)")
+        # Destino del refspec: [+]origen[:destino]; HEAD es la rama actual
+        ref=${x#+}; ref=${ref##*:}; ref=${ref#refs/heads/}
+        [[ "$ref" == HEAD ]] && ref=$rama
+        [[ "$ref" == main ]] && denegar+=("push a main ($x)")
       done
       # `git push` o `git push origin` estando en main empuja main
       [[ "$rama" == main ]] && ((${#no_flags[@]} <= 1)) && denegar+=("push a main (rama actual)")

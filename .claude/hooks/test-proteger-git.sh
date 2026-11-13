@@ -58,6 +58,15 @@ probar "$en_rama" deny  'git push origin main'
 probar "$en_rama" allow 'git push -u origin sesion-x'
 probar "$en_main" deny  'git push'
 probar "$en_rama" deny  'gh pr merge 1'
+probar "$en_main" deny  'git push origin HEAD'
+probar "$en_main" deny  'git push -u origin HEAD'
+probar "$en_rama" allow 'git push origin HEAD'
+probar "$en_rama" deny  'git push origin HEAD:main'
+probar "$en_rama" deny  'git push origin x:refs/heads/main'
+probar "$en_rama" deny  'git push origin refs/heads/main'
+probar "$en_rama" allow 'git push origin HEAD:refs/heads/sesion-x'
+probar "$en_rama" ask   'git push origin +sesion-x'
+probar "$en_rama" deny  'git push origin :sesion-x'
 
 echo "--- pull"
 probar "$en_main" deny  'git pull'
@@ -65,6 +74,7 @@ probar "$en_rama" deny  'git pull origin main'
 probar "$en_rama" allow 'git pull --ff-only'
 probar "$en_rama" ask   'git pull --rebase'
 probar "$en_rama" deny  'git pull --rebase=false'
+probar "$en_rama" deny  'git pull --ff-only --no-ff'
 
 echo
 if ((fallos)); then echo "$fallos caso(s) fallaron"; exit 1; fi
