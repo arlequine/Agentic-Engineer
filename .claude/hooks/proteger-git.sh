@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 # Hook PreToolUse (matcher: Bash) — protege el flujo de Git del repositorio.
 #
-#   deny (exit 2): commit/merge en main, push a main, borrado de ramas.
+#   deny (exit 2): commit en main, push a main, borrado de ramas y cualquier
+#                  merge (git merge en cualquier rama, gh pr merge). Los PR
+#                  los aprueba y fusiona el estudiante manualmente en GitHub.
 #   ask  (JSON)  : rebase, cherry-pick, tags, push --force, reset --hard,
-#                  renombrar ramas, gh pr merge.
+#                  renombrar ramas.
 #
 # Límites conocidos: analiza el TEXTO del comando. No ve lo que ocurre dentro
 # de `eval`, scripts .sh ni alias de git. Protege contra errores del agente,
@@ -32,7 +34,7 @@ while IFS= read -r segmento; do
 
   # --- gh pr merge ---
   if [[ "${t[0]}" == "gh" && "${t[1]:-}" == "pr" && "${t[2]:-}" == "merge" ]]; then
-    preguntar+=("gh pr merge: merge a main desde GitHub")
+    denegar+=("gh pr merge: los PR los aprueba y fusiona el estudiante en GitHub")
     continue
   fi
 
@@ -59,8 +61,9 @@ while IFS= read -r segmento; do
       [[ "$rama" == main ]] && denegar+=("commit en main") ;;
 
     merge)
-      if [[ "$rama" == main ]] && ! tiene --abort && ! tiene --quit; then
-        denegar+=("merge dentro de main")
+      # Ningún merge, en ninguna rama (salvo abortar uno en curso)
+      if ! tiene --abort && ! tiene --quit; then
+        denegar+=("merge (prohibido en cualquier rama)")
       fi ;;
 
     push)
@@ -106,7 +109,7 @@ if ((${#denegar[@]})); then
   {
     echo "Bloqueado por el harness (.claude/hooks/proteger-git.sh):"
     printf ' - %s\n' "${denegar[@]}"
-    echo "No lo rodees: avisa al estudiante. Trabaja en la rama de la sesión (sesion-NN-slug) y lleva los cambios a main mediante PR."
+    echo "No lo rodees: avisa al estudiante. Trabaja en la rama de la sesión (sesion-NN-slug); los PR los aprueba y fusiona el estudiante en GitHub."
   } >&2
   exit 2
 fi
