@@ -3,6 +3,7 @@
 > Documento vivo y fuente de verdad del aprendizaje. El agente lo lee al iniciar cada lección y se actualiza al cerrarla.
 
 ## Índice
+
 - [Estado actual](#estado-actual)
 - [1. Propósito](#1-propósito)
 - [2. Perfil del estudiante](#2-perfil-del-estudiante)
@@ -22,11 +23,11 @@
 
 | Campo | Valor |
 |---|---|
-| Lección en curso | Ninguna. Sesión 1 cerrada; Sesión 2 por iniciar |
-| Última lección completada | Sesión 1 · Harness Engineering (PR #1 fusionado en `main`) |
-| Última actualización | 2026-11-12 |
-| Siguiente paso concreto | Viernes 13 nov: iniciar la Sesión 2 creando `sesion-02-prd` desde `main` (`git switch main && git pull --ff-only && git switch -c sesion-02-prd`) y su guía en `docs/lessons/sesion-02-prd/README.md` |
-| Progreso | 1 / 15 sesiones listadas (ver nota del Módulo 6) |
+| Lección en curso | Ninguna. Sesión 2 cerrada (PR pendiente de fusionar); Sesión 3 por iniciar |
+| Última lección completada | Sesión 2 · Del problema al PRD y al backlog (producto: **CondominIA**) |
+| Última actualización | 2026-11-19 |
+| Siguiente paso concreto | Fusionar el PR de `sesion-02-prd` en GitHub. Después, iniciar la Sesión 3 creando `sesion-03-sdd` desde `main` (`git switch main && git pull --ff-only && git switch -c sesion-03-sdd`): primera historia de `docs/backlog/tickets.md` implementada desde spec, empezando por la cadena T-01 → T-04 |
+| Progreso | 2 / 15 sesiones listadas (ver nota del Módulo 6) |
 
 ---
 
@@ -34,6 +35,7 @@
 
 Aprender a desarrollar software con agentes de IA (Claude Code) de forma disciplinada: diseñar el entorno de trabajo del agente (harness), pasar de un problema a un PRD y a specs, garantizar calidad con TDD, evals y guardarraíles, construir un producto con IA (RAG y agente propio) y llevarlo a producción con DevSecOps.
 El vehículo es **TaskFlow AI**, construido lección a lección en un repositorio que sirve a la vez como proyecto de estudio y portafolio.
+El producto que se construye es **CondominIA**, una app de control de accesos para privadas residenciales, definida en la Sesión 2 (`docs/prd/prd.md`).
 
 ---
 
@@ -62,7 +64,7 @@ Leyenda: `[ ]` pendiente · `[~]` en curso · `[x]` completada
   - Demo comparada: la misma tarea de TaskFlow AI con y sin harness
   - Del ticket al pull request: plan, implementación y revisión automática
   - Panorama de agentes de código y criterio para elegir entre ellos
-- [ ] **Sesión 2. Del problema al PRD y al backlog**
+- [x] **Sesión 2. Del problema al PRD y al backlog**
   - Mentalidad de producto: del developer que implementa al que decide qué se construye
   - Job-to-be-done, benchmark, competencia y pricing con deep research
   - El PRD versionado como fuente de verdad del proyecto
@@ -379,7 +381,7 @@ La salida de cada sesión es la entrada de la siguiente. Columnas: **Punto de pa
 ### Actual (solo lo que existe)
 
 ```
-Agentic-Engineer/                    (rama main, tras S1)
+Agentic-Engineer/                    (rama main, tras S2)
 ├── CLAUDE.md                        # reglas de trabajo con el agente
 ├── CONTEXT.md
 ├── PLAN.md
@@ -397,10 +399,20 @@ Agentic-Engineer/                    (rama main, tras S1)
 │       └── cierre-de-sesion/
 │           └── SKILL.md             # cierre de sesión por fases
 └── docs/
+    ├── research/
+    │   ├── jtbd.md                  # jobs-to-be-done del Job A (accesos)
+    │   └── competencia.md           # competencia y pricing, con fuentes
+    ├── prd/
+    │   └── prd.md                   # PRD versionado de CondominIA (v0.3)
+    ├── backlog/
+    │   ├── historias.md             # épicas e historias con criterios G/W/T
+    │   └── tickets.md               # tickets con MoSCoW y dependencias
     └── lessons/
-        └── sesion-01-harness/
-            ├── README.md            # guía de la sesión
-            └── comparativa.md       # misma tarea con y sin harness
+        ├── sesion-01-harness/
+        │   ├── README.md            # guía de la sesión
+        │   └── comparativa.md       # misma tarea con y sin harness
+        └── sesion-02-prd/
+            └── README.md            # guía de la sesión
 ```
 
 ### Estrategia de ramas (una rama por sesión)
@@ -413,6 +425,7 @@ Cada sesión vive en su propia rama, que queda como foto del estado del proyecto
 | `sesion-NN-slug` | Trabajo de la sesión N (ej. `sesion-01-harness`, `sesion-02-prd`). Se crea desde `main` al iniciar la sesión. |
 
 Flujo por sesión:
+
 1. Al iniciar: `git switch main && git pull && git switch -c sesion-NN-slug`.
 2. Durante: commits pequeños en la rama de la sesión.
 3. Al cerrar: actualizar `CONTEXT.md` en la rama, abrir PR `sesion-NN-slug → main` y hacer merge **sin borrar la rama**, para conservar la foto de esa sesión.
@@ -469,7 +482,29 @@ Agentic-Engineer/
 
 > De la más reciente a la más antigua. Añadir entradas arriba; nunca reescribir las anteriores.
 
+### 2026-11-19 · Sesión 2 — Del problema al PRD y al backlog
+
+- **Agregado al repositorio:** `docs/research/jtbd.md` y `docs/research/competencia.md`; `docs/prd/prd.md` v0.3 (RF-01–10, RN-01–04, RNF-01–08, métricas M-01–03, riesgos y preguntas abiertas); `docs/backlog/historias.md` (5 épicas y 11 historias con G/W/T); `docs/backlog/tickets.md` (17 tickets con MoSCoW y dependencias); guía `docs/lessons/sesion-02-prd/README.md`.
+- **Decisiones tomadas:**
+  - Producto: **CondominIA** (TaskFlow AI queda como nombre del proyecto de aprendizaje), con el control de accesos como Job A.
+  - Paquetería fuera del MVP porque no encaja con la autorización previa; amenidades (Job B) en fase 2.
+  - Precio de $60 MXN por vivienda al mes, pagado por la administración, con un tope de $15 para el LLM (RNF-06).
+  - Diferenciador: asistente conversacional para residente y guardia, más una caseta optimizada, porque las funciones de acceso con QR ya son commodity.
+  - Reglas de negocio: sin pase no hay acceso, toda entrada o denegación notifica al residente, y 15 minutos de tolerancia antes del inicio.
+  - Un pase revocado con la caseta offline se acepta y la entrada queda auditada.
+  - Operación offline pospuesta (T-15 como Should) y el asistente como Must.
+- **Dudas pendientes:**
+  - Línea base del tiempo actual de validación en caseta.
+  - Si se registra la salida de los visitantes.
+  - Si se verifica la identidad del visitante.
+  - Precios reales de la competencia (los publicados no están verificados).
+  - Reajustar `PLAN.md`: la sesión se hizo el 19 nov en vez del 13, con unas dos sesiones de atraso.
+- **Aprendizajes clave:** —
+- **Entregable verificado:** sí — `docs/prd/` versionado (3 versiones con changelog); 11 de 11 historias con escenarios G/W/T y 17 de 17 tickets con prioridad y dependencias, comprobados con un script.
+- **Horas reales:** 3 h (estimadas en PLAN.md: 3 h)
+
 ### 2026-11-12 · Sesión 1 — Harness Engineering: el entorno de trabajo del agente
+
 - **Agregado al repositorio:** `CLAUDE.md` con las reglas de trabajo; hooks `PreToolUse` (`proteger-git.sh`, con prueba de regresión de 35 casos) y `SessionStart` (`estado-actual.sh`); skill `cierre-de-sesion`; subagente `pr-review`; `.mcp.json` con Playwright; `docs/lessons/sesion-01-harness/comparativa.md`.
 - **Decisiones tomadas:** corregir los huecos del hook (seguimiento de rama, `pull` con merge, push de `HEAD` a `main`) antes del merge, porque es la garantía que promete el harness; configurar MCP en esta sesión con un servidor existente y dejar el servidor propio para S5, porque el temario reparte `.mcp.json` entre S1 y S5; usar `docs/vision.md` como tarea de la comparativa, porque aún no hay código y la tarea pone a prueba rama, commits, alcance y confirmación.
 - **Dudas pendientes:** temas de la sesión no trabajados de forma explícita, quedan como lectura pendiente: «Panorama de agentes de código y criterio para elegir entre ellos» y *plan mode*.
@@ -478,6 +513,7 @@ Agentic-Engineer/
 - **Horas reales:** 3 h (estimadas en PLAN.md: 2.5 h)
 
 ### 2026-11-11 · Preparación (Pasos 1–3)
+
 - **Agregado al repositorio:** `CONTEXT.md`, `PLAN.md`, `README.md` y `CLAUDE.md` mínimo en `main`; rama `sesion-01-harness` con `docs/lessons/sesion-01-harness/README.md`.
 - **Decisiones tomadas:** 3 sesiones por semana (~3.3 h c/u, ~50 h en total) para terminar antes de fin de diciembre; una rama por sesión que se conserva tras el PR; la sesión restante del Módulo 6 queda abierta; el plan se diseñó para que otra persona pueda adaptarlo; `CLAUDE.md` se deja mínimo porque diseñarlo es parte de S1.
 - **Dudas pendientes:** precisar el stack concreto del estudiante para ajustar repasos (sobre todo antes de S7).
@@ -533,6 +569,7 @@ Estado: ⬜ no instalado · 🟡 instalado sin configurar · ✅ instalado y con
 > Adaptado a perfil full-stack senior: se da por dominado lo general (TypeScript, React, Node, Git, HTTP, testing básico). El repaso se concentra en lo específico del temario. Cada bloque es un repaso corto (≤1 h), no un curso.
 
 **Antes de la Sesión 1 (imprescindible)**
+
 - **Conceptos de LLM aplicados:** tokens, ventana de contexto y su degradación, tool use, costo por token.
 - **Claude Code instalado y probado:** sesión básica, permisos, lectura de un repo pequeño.
 
