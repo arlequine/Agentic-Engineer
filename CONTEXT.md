@@ -23,11 +23,11 @@
 
 | Campo | Valor |
 |---|---|
-| Lección en curso | Sesión 2 · Del problema al PRD y al backlog, en `sesion-02-prd`. Producto definido: **CondominIA** (accesos en privadas residenciales). Hechos: JTBD, competencia y pricing, PRD v0.3 (RF, RN, RNF) y 11 historias con G/W/T. Falta: tickets con prioridad y dependencias, y el cierre |
-| Última lección completada | Sesión 1 · Harness Engineering (PR #1 fusionado en `main`) |
+| Lección en curso | Ninguna. Sesión 2 cerrada (PR pendiente de fusionar); Sesión 3 por iniciar |
+| Última lección completada | Sesión 2 · Del problema al PRD y al backlog (producto: **CondominIA**) |
 | Última actualización | 2026-11-19 |
-| Siguiente paso concreto | Crear `docs/backlog/tickets.md` (prioridad MoSCoW y dependencias) y cerrar la Sesión 2 con la skill `cierre-de-sesion`. Guía en `docs/lessons/sesion-02-prd/README.md` |
-| Progreso | 1 / 15 sesiones listadas (ver nota del Módulo 6) |
+| Siguiente paso concreto | Fusionar el PR de `sesion-02-prd` en GitHub. Después, iniciar la Sesión 3 creando `sesion-03-sdd` desde `main` (`git switch main && git pull --ff-only && git switch -c sesion-03-sdd`): primera historia de `docs/backlog/tickets.md` implementada desde spec, empezando por la cadena T-01 → T-04 |
+| Progreso | 2 / 15 sesiones listadas (ver nota del Módulo 6) |
 
 ---
 
@@ -35,6 +35,7 @@
 
 Aprender a desarrollar software con agentes de IA (Claude Code) de forma disciplinada: diseñar el entorno de trabajo del agente (harness), pasar de un problema a un PRD y a specs, garantizar calidad con TDD, evals y guardarraíles, construir un producto con IA (RAG y agente propio) y llevarlo a producción con DevSecOps.
 El vehículo es **TaskFlow AI**, construido lección a lección en un repositorio que sirve a la vez como proyecto de estudio y portafolio.
+El producto que se construye es **CondominIA**, una app de control de accesos para privadas residenciales, definida en la Sesión 2 (`docs/prd/prd.md`).
 
 ---
 
@@ -63,7 +64,7 @@ Leyenda: `[ ]` pendiente · `[~]` en curso · `[x]` completada
   - Demo comparada: la misma tarea de TaskFlow AI con y sin harness
   - Del ticket al pull request: plan, implementación y revisión automática
   - Panorama de agentes de código y criterio para elegir entre ellos
-- [ ] **Sesión 2. Del problema al PRD y al backlog**
+- [x] **Sesión 2. Del problema al PRD y al backlog**
   - Mentalidad de producto: del developer que implementa al que decide qué se construye
   - Job-to-be-done, benchmark, competencia y pricing con deep research
   - El PRD versionado como fuente de verdad del proyecto
@@ -380,7 +381,7 @@ La salida de cada sesión es la entrada de la siguiente. Columnas: **Punto de pa
 ### Actual (solo lo que existe)
 
 ```
-Agentic-Engineer/                    (rama main, tras S1)
+Agentic-Engineer/                    (rama main, tras S2)
 ├── CLAUDE.md                        # reglas de trabajo con el agente
 ├── CONTEXT.md
 ├── PLAN.md
@@ -398,10 +399,20 @@ Agentic-Engineer/                    (rama main, tras S1)
 │       └── cierre-de-sesion/
 │           └── SKILL.md             # cierre de sesión por fases
 └── docs/
+    ├── research/
+    │   ├── jtbd.md                  # jobs-to-be-done del Job A (accesos)
+    │   └── competencia.md           # competencia y pricing, con fuentes
+    ├── prd/
+    │   └── prd.md                   # PRD versionado de CondominIA (v0.3)
+    ├── backlog/
+    │   ├── historias.md             # épicas e historias con criterios G/W/T
+    │   └── tickets.md               # tickets con MoSCoW y dependencias
     └── lessons/
-        └── sesion-01-harness/
-            ├── README.md            # guía de la sesión
-            └── comparativa.md       # misma tarea con y sin harness
+        ├── sesion-01-harness/
+        │   ├── README.md            # guía de la sesión
+        │   └── comparativa.md       # misma tarea con y sin harness
+        └── sesion-02-prd/
+            └── README.md            # guía de la sesión
 ```
 
 ### Estrategia de ramas (una rama por sesión)
@@ -470,6 +481,27 @@ Agentic-Engineer/
 ## 8. Bitácora de lecciones
 
 > De la más reciente a la más antigua. Añadir entradas arriba; nunca reescribir las anteriores.
+
+### 2026-11-19 · Sesión 2 — Del problema al PRD y al backlog
+
+- **Agregado al repositorio:** `docs/research/jtbd.md` y `docs/research/competencia.md`; `docs/prd/prd.md` v0.3 (RF-01–10, RN-01–04, RNF-01–08, métricas M-01–03, riesgos y preguntas abiertas); `docs/backlog/historias.md` (5 épicas y 11 historias con G/W/T); `docs/backlog/tickets.md` (17 tickets con MoSCoW y dependencias); guía `docs/lessons/sesion-02-prd/README.md`.
+- **Decisiones tomadas:**
+  - Producto: **CondominIA** (TaskFlow AI queda como nombre del proyecto de aprendizaje), con el control de accesos como Job A.
+  - Paquetería fuera del MVP porque no encaja con la autorización previa; amenidades (Job B) en fase 2.
+  - Precio de $60 MXN por vivienda al mes, pagado por la administración, con un tope de $15 para el LLM (RNF-06).
+  - Diferenciador: asistente conversacional para residente y guardia, más una caseta optimizada, porque las funciones de acceso con QR ya son commodity.
+  - Reglas de negocio: sin pase no hay acceso, toda entrada o denegación notifica al residente, y 15 minutos de tolerancia antes del inicio.
+  - Un pase revocado con la caseta offline se acepta y la entrada queda auditada.
+  - Operación offline pospuesta (T-15 como Should) y el asistente como Must.
+- **Dudas pendientes:**
+  - Línea base del tiempo actual de validación en caseta.
+  - Si se registra la salida de los visitantes.
+  - Si se verifica la identidad del visitante.
+  - Precios reales de la competencia (los publicados no están verificados).
+  - Reajustar `PLAN.md`: la sesión se hizo el 19 nov en vez del 13, con unas dos sesiones de atraso.
+- **Aprendizajes clave:** —
+- **Entregable verificado:** sí — `docs/prd/` versionado (3 versiones con changelog); 11 de 11 historias con escenarios G/W/T y 17 de 17 tickets con prioridad y dependencias, comprobados con un script.
+- **Horas reales:** 3 h (estimadas en PLAN.md: 3 h)
 
 ### 2026-11-12 · Sesión 1 — Harness Engineering: el entorno de trabajo del agente
 
