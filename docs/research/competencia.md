@@ -52,7 +52,8 @@ Las features del Job A ya son commodity, así que la diferenciación tiene que v
 
 ## Decisiones (2026-11-19)
 - **Canal:** una app propia que centralice la información de la privada. WhatsApp queda descartado como canal.
-- **Precio objetivo:** $40 MXN por vivienda al mes. Queda en la parte media del mercado: más caro que Residentfy ($9–15) y que Visitapp GO (~$27), y más barato que Next Accesos ($85 + IVA).
+- **Precio objetivo:** $60 MXN por vivienda al mes (se subió desde una primera propuesta de $40). Queda en la parte media-alta del mercado: más caro que Residentfy ($9–15) y que Visitapp (~$27–60), y más barato que Next Accesos ($85 + IVA).
+- **Presupuesto del LLM:** hasta $15 MXN por vivienda al mes, el 25 % del precio (RNF-06 del PRD).
 - **Diferenciador:** se combinan los huecos 1 y 2, y es lo que justifica el sobreprecio:
   - **Asistente conversacional dentro de la app.** El residente da de alta visitas en lenguaje natural, sin WhatsApp.
   - **Experiencia de caseta pensada para el guardia.** Validación en segundos, tolerante a mala conectividad y con poca capacitación necesaria.
