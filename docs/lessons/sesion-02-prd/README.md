@@ -5,21 +5,21 @@
 | Módulo | 1 · Desarrollo con agentes de IA |
 | Rama | `sesion-02-prd` |
 | Tiempo estimado | 3 h (ver `PLAN.md`) |
-| Estado | En curso (iniciada 2026-11-19) |
+| Estado | Completada (2026-11-19) · PR pendiente de fusionar en `main` |
 
 ## Antes de empezar
 - [x] Harness de la Sesión 1 en `main` y rama `sesion-02-prd` creada.
-- [ ] Repaso de JTBD, Given/When/Then, MVP y priorización básica: se hace dentro de cada tema, no como bloque aparte.
+- [x] Repaso de JTBD, Given/When/Then, MVP y priorización básica: se hace dentro de cada tema, no como bloque aparte.
 
 ## Punto de partida
 Harness de la Sesión 1: `CLAUDE.md`, hooks `proteger-git` y `estado-actual`, skill `cierre-de-sesion`, subagente `pr-review` y MCP con Playwright. Todavía no hay producto definido.
 
 ## Temas
-- [ ] Mentalidad de producto: del developer que implementa al que decide qué se construye
-- [ ] Job-to-be-done, benchmark, competencia y pricing con deep research
-- [ ] El PRD versionado como fuente de verdad del proyecto
-- [ ] Épicas, historias de usuario y criterios Given/When/Then
-- [ ] Requisitos no funcionales y tickets con prioridad y dependencias
+- [x] Mentalidad de producto: del developer que implementa al que decide qué se construye
+- [x] Job-to-be-done, benchmark, competencia y pricing con deep research
+- [x] El PRD versionado como fuente de verdad del proyecto
+- [x] Épicas, historias de usuario y criterios Given/When/Then
+- [x] Requisitos no funcionales y tickets con prioridad y dependencias
 
 ## Ejercicios
 Uno por tema, propuesto antes de resolverlo.
