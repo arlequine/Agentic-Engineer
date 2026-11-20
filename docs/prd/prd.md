@@ -2,7 +2,7 @@
 
 | Campo | Valor |
 |---|---|
-| Versión | 0.1 |
+| Versión | 0.2 |
 | Estado | Borrador |
 | Fecha | 2026-11-19 |
 | Fuentes | [`jtbd.md`](../research/jtbd.md), [`competencia.md`](../research/competencia.md) |
@@ -65,7 +65,7 @@ De alto nivel. Se descomponen en historias en [`docs/backlog/`](../backlog/).
 | ID | Actor | Requisito |
 |---|---|---|
 | RF-01 | Administración | Dar de alta la privada, sus viviendas, residentes y guardias |
-| RF-02 | Residente | Pre-autorizar una visita puntual (nombre y ventana de fecha y hora) y obtener un pase para compartirlo con el visitante |
+| RF-02 | Residente | Pre-autorizar una visita puntual (nombre, fecha y una ventana horaria o el día completo) y obtener un pase para compartirlo con el visitante |
 | RF-03 | Residente | Crear un pase recurrente para servicio (días, horario y vigencia) |
 | RF-04 | Residente | Consultar, modificar y revocar sus pases |
 | RF-05 | Residente | Crear y modificar pases conversando con el asistente, que pide confirmación antes de guardar |
@@ -80,6 +80,8 @@ De alto nivel. Se descomponen en historias en [`docs/backlog/`](../backlog/).
 |---|---|
 | RN-01 | **Sin pase no hay acceso.** Toda visita tiene que estar registrada por un residente antes de entrar. Si llega alguien sin pase, el residente lo genera en ese momento (RF-02 o RF-05) |
 | RN-02 | **Toda entrada notifica al residente.** Cuando el guardia escanea un pase y registra la entrada (RF-06), el sistema avisa en ese momento al residente que su visita llegó (RF-07) |
+| RN-03 | **Toda denegación notifica al residente.** Si se deniega un pase, el guardia ve el motivo y el residente recibe un aviso con ese mismo motivo, para que pueda generar un pase nuevo si procede (RN-01) |
+| RN-04 | **Tolerancia horaria.** Un pase con ventana horaria se acepta desde 15 minutos antes de su inicio y hasta su fin, sin tolerancia después. Un pase de día completo vale de 00:00 a 23:59 del día elegido |
 
 ## 7. Requisitos no funcionales
 _Se definen en el tema 5 de la Sesión 2._
@@ -105,3 +107,4 @@ _Se definen en el tema 5 de la Sesión 2._
 | Versión | Fecha | Cambio |
 |---|---|---|
 | 0.1 | 2026-11-19 | Borrador inicial: problema, propuesta de valor, usuarios, métricas, alcance del MVP y requisitos funcionales del Job A, reglas RN-01 (sin pase no hay acceso) y RN-02 (toda entrada notifica al residente) |
+| 0.2 | 2026-11-19 | RN-03 (toda denegación notifica), RN-04 (tolerancia de 15 min y pase de día completo); RF-02 admite el día completo. Origen: refinamiento de HU-09 |
