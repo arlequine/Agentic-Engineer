@@ -3,6 +3,7 @@
 > Documento vivo y fuente de verdad del aprendizaje. El agente lo lee al iniciar cada lección y se actualiza al cerrarla.
 
 ## Índice
+
 - [Estado actual](#estado-actual)
 - [1. Propósito](#1-propósito)
 - [2. Perfil del estudiante](#2-perfil-del-estudiante)
@@ -22,10 +23,10 @@
 
 | Campo | Valor |
 |---|---|
-| Lección en curso | Ninguna. Sesión 1 cerrada; Sesión 2 por iniciar |
+| Lección en curso | Sesión 2 · Del problema al PRD y al backlog, en `sesion-02-prd`. Producto definido: **CondominIA** (accesos en privadas residenciales). Hechos: JTBD, competencia y pricing, PRD v0.3 (RF, RN, RNF) y 11 historias con G/W/T. Falta: tickets con prioridad y dependencias, y el cierre |
 | Última lección completada | Sesión 1 · Harness Engineering (PR #1 fusionado en `main`) |
-| Última actualización | 2026-11-12 |
-| Siguiente paso concreto | Viernes 13 nov: iniciar la Sesión 2 creando `sesion-02-prd` desde `main` (`git switch main && git pull --ff-only && git switch -c sesion-02-prd`) y su guía en `docs/lessons/sesion-02-prd/README.md` |
+| Última actualización | 2026-11-19 |
+| Siguiente paso concreto | Crear `docs/backlog/tickets.md` (prioridad MoSCoW y dependencias) y cerrar la Sesión 2 con la skill `cierre-de-sesion`. Guía en `docs/lessons/sesion-02-prd/README.md` |
 | Progreso | 1 / 15 sesiones listadas (ver nota del Módulo 6) |
 
 ---
@@ -413,6 +414,7 @@ Cada sesión vive en su propia rama, que queda como foto del estado del proyecto
 | `sesion-NN-slug` | Trabajo de la sesión N (ej. `sesion-01-harness`, `sesion-02-prd`). Se crea desde `main` al iniciar la sesión. |
 
 Flujo por sesión:
+
 1. Al iniciar: `git switch main && git pull && git switch -c sesion-NN-slug`.
 2. Durante: commits pequeños en la rama de la sesión.
 3. Al cerrar: actualizar `CONTEXT.md` en la rama, abrir PR `sesion-NN-slug → main` y hacer merge **sin borrar la rama**, para conservar la foto de esa sesión.
@@ -470,6 +472,7 @@ Agentic-Engineer/
 > De la más reciente a la más antigua. Añadir entradas arriba; nunca reescribir las anteriores.
 
 ### 2026-11-12 · Sesión 1 — Harness Engineering: el entorno de trabajo del agente
+
 - **Agregado al repositorio:** `CLAUDE.md` con las reglas de trabajo; hooks `PreToolUse` (`proteger-git.sh`, con prueba de regresión de 35 casos) y `SessionStart` (`estado-actual.sh`); skill `cierre-de-sesion`; subagente `pr-review`; `.mcp.json` con Playwright; `docs/lessons/sesion-01-harness/comparativa.md`.
 - **Decisiones tomadas:** corregir los huecos del hook (seguimiento de rama, `pull` con merge, push de `HEAD` a `main`) antes del merge, porque es la garantía que promete el harness; configurar MCP en esta sesión con un servidor existente y dejar el servidor propio para S5, porque el temario reparte `.mcp.json` entre S1 y S5; usar `docs/vision.md` como tarea de la comparativa, porque aún no hay código y la tarea pone a prueba rama, commits, alcance y confirmación.
 - **Dudas pendientes:** temas de la sesión no trabajados de forma explícita, quedan como lectura pendiente: «Panorama de agentes de código y criterio para elegir entre ellos» y *plan mode*.
@@ -478,6 +481,7 @@ Agentic-Engineer/
 - **Horas reales:** 3 h (estimadas en PLAN.md: 2.5 h)
 
 ### 2026-11-11 · Preparación (Pasos 1–3)
+
 - **Agregado al repositorio:** `CONTEXT.md`, `PLAN.md`, `README.md` y `CLAUDE.md` mínimo en `main`; rama `sesion-01-harness` con `docs/lessons/sesion-01-harness/README.md`.
 - **Decisiones tomadas:** 3 sesiones por semana (~3.3 h c/u, ~50 h en total) para terminar antes de fin de diciembre; una rama por sesión que se conserva tras el PR; la sesión restante del Módulo 6 queda abierta; el plan se diseñó para que otra persona pueda adaptarlo; `CLAUDE.md` se deja mínimo porque diseñarlo es parte de S1.
 - **Dudas pendientes:** precisar el stack concreto del estudiante para ajustar repasos (sobre todo antes de S7).
@@ -533,6 +537,7 @@ Estado: ⬜ no instalado · 🟡 instalado sin configurar · ✅ instalado y con
 > Adaptado a perfil full-stack senior: se da por dominado lo general (TypeScript, React, Node, Git, HTTP, testing básico). El repaso se concentra en lo específico del temario. Cada bloque es un repaso corto (≤1 h), no un curso.
 
 **Antes de la Sesión 1 (imprescindible)**
+
 - **Conceptos de LLM aplicados:** tokens, ventana de contexto y su degradación, tool use, costo por token.
 - **Claude Code instalado y probado:** sesión básica, permisos, lectura de un repo pequeño.
 
