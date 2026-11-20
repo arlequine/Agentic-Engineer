@@ -306,7 +306,7 @@ Escenario 3: caseta sin conexión
   Y recibo la notificación con la hora real de la entrada
 ```
 
-> Nota: el escenario 3 depende del RNF de sincronización, que se define en el tema 5, y de la arquitectura de la S7.
+> Nota: el escenario 3 implementa RNF-01; la arquitectura se define en la S7.
 
 ---
 
