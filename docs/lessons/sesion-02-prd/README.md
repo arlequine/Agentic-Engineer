@@ -12,7 +12,7 @@
 - [ ] Repaso de JTBD, Given/When/Then, MVP y priorización básica: se hace dentro de cada tema, no como bloque aparte.
 
 ## Punto de partida
-Harness de la Sesión 1: `CLAUDE.md`, hooks `proteger-git` y `estado-actual`, skill `cierre-de-sesion`, subagente `pr-review` y MCP con Playwright. Todavía no hay dominio de producto definido para TaskFlow AI.
+Harness de la Sesión 1: `CLAUDE.md`, hooks `proteger-git` y `estado-actual`, skill `cierre-de-sesion`, subagente `pr-review` y MCP con Playwright. Todavía no hay producto definido.
 
 ## Temas
 - [ ] Mentalidad de producto: del developer que implementa al que decide qué se construye
@@ -40,5 +40,5 @@ Uno por tema, propuesto antes de resolverlo.
 Las historias se convierten en specs (S3); los criterios G/W/T, en tests (S4); los RNF, en seguridad y SLOs (S13–S14).
 
 ## Notas de la sesión
-- Dominio elegido: gestión de accesos y amenidades en privadas residenciales. *Pendiente para S9–S10:* el reglamento de la privada como corpus de RAG y un asistente para dar de alta visitas como agente propio.
+- Producto: **CondominIA**, app de gestión de accesos y amenidades para privadas residenciales. TaskFlow AI queda como nombre del proyecto de aprendizaje. *Pendiente al cierre:* reflejarlo en `CONTEXT.md` y `README.md`. *Pendiente para S9–S10:* el reglamento de la privada como corpus de RAG y un asistente para dar de alta visitas como agente propio.
 - Calendario: la sesión arranca con unas dos sesiones de atraso respecto a `PLAN.md` (estaba planeada para el 13 nov). El reajuste se propone al cerrar.

@@ -1,4 +1,4 @@
-# Jobs-to-be-done · TaskFlow AI
+# Jobs-to-be-done · CondominIA
 
 > Dominio: gestión de accesos y amenidades en privadas residenciales.
 > Los jobs no mencionan la solución. Las soluciones aparecen solo como hipótesis y se desarrollan en el PRD.
