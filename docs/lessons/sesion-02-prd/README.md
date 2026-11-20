@@ -7,13 +7,12 @@
 | Tiempo estimado | 3 h (ver `PLAN.md`) |
 | Estado | En curso (iniciada 2026-11-19) |
 
-## Antes de empezar (≤ 30 min)
-- [ ] Repasar JTBD, formato de historias Given/When/Then, qué es un MVP y priorización básica (se repasa dentro de cada tema).
-- [x] Harness de la Sesión 1 funcionando.
-- [x] Estar en la rama `sesion-02-prd`.
+## Antes de empezar
+- [x] Harness de la Sesión 1 en `main` y rama `sesion-02-prd` creada.
+- [ ] Repaso de JTBD, Given/When/Then, MVP y priorización básica: se hace dentro de cada tema, no como bloque aparte.
 
 ## Punto de partida
-Harness de la Sesión 1 en `main`: `CLAUDE.md`, hooks (`proteger-git`, `estado-actual`), skill `cierre-de-sesion`, subagente `pr-review` y MCP con Playwright.
+Harness de la Sesión 1: `CLAUDE.md`, hooks `proteger-git` y `estado-actual`, skill `cierre-de-sesion`, subagente `pr-review` y MCP con Playwright. Todavía no hay dominio de producto definido para TaskFlow AI.
 
 ## Temas
 - [ ] Mentalidad de producto: del developer que implementa al que decide qué se construye
@@ -23,9 +22,12 @@ Harness de la Sesión 1 en `main`: `CLAUDE.md`, hooks (`proteger-git`, `estado-a
 - [ ] Requisitos no funcionales y tickets con prioridad y dependencias
 
 ## Ejercicios
-_Se definen al iniciar cada tema, uno por tema._
+Uno por tema, propuesto antes de resolverlo.
 
-1. **Mentalidad de producto:** formular el problema de TaskFlow AI en una frase JTBD.
+1. **Mentalidad de producto:** formular el problema en una frase JTBD.
+   - v1: un solo JTBD para el residente de una privada (reservar amenidades y autorizar accesos).
+   - Revisión: eran dos jobs, la frase traía la solución ("desde mi celular") y faltaban actores (caseta, administración, visitante).
+   - Decisión: separar en **Job A (accesos)** y **Job B (amenidades)**, y trabajar primero el Job A.
 
 ## Entregable de salida
 - `docs/research/`: JTBD, competencia y pricing.
@@ -38,4 +40,5 @@ _Se definen al iniciar cada tema, uno por tema._
 Las historias se convierten en specs (S3); los criterios G/W/T, en tests (S4); los RNF, en seguridad y SLOs (S13–S14).
 
 ## Notas de la sesión
-- Calendario: la sesión empieza con unas dos sesiones de atraso respecto a `PLAN.md` (planeada para el 13 nov). El reajuste se propone al cerrar.
+- Dominio elegido: gestión de accesos y amenidades en privadas residenciales. *Pendiente para S9–S10:* el reglamento de la privada como corpus de RAG y un asistente para dar de alta visitas como agente propio.
+- Calendario: la sesión arranca con unas dos sesiones de atraso respecto a `PLAN.md` (estaba planeada para el 13 nov). El reajuste se propone al cerrar.
