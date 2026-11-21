@@ -2,11 +2,11 @@
 
 | Campo | Valor |
 |---|---|
-| Versión | 0.1 (borrador, pendiente de revisión) |
+| Versión | 0.1 |
 | Fecha | 2026-11-20 |
 | Historia | [HU-01](../docs/backlog/historias.md) · Ticket T-01 |
 | Implementa | RF-01 (parcial: privada y viviendas) |
-| Estado | Borrador |
+| Estado | Aprobada (2026-11-20) |
 
 ## 1. Contexto
 
@@ -42,7 +42,7 @@ La privada es la unidad de operación de CondominIA. Cada pase, entrada e incide
 | ID | Regla |
 |---|---|
 | R-01 | Toda vivienda pertenece exactamente a una privada, y toda privada a exactamente una sección. |
-| R-02 | El identificador de una vivienda es **texto**. Para comparar se usa su forma normalizada: se quitan los espacios al inicio y al final, los espacios internos se colapsan a uno y todo se pasa a mayúsculas. Ejemplo: `" 14-b "` → `"14-B"`. |
+| R-02 | El identificador de una vivienda es **texto**. Para comparar se usa su forma normalizada: se quitan los espacios al inicio y al final, los espacios internos se colapsan a uno y todo se pasa a mayúsculas y se eliminan los ceros a la izquierda; si el identificador es solo ceros, queda `"0"`. Ejemplos: `" 14-b "` → `"14-B"`, `"014"` → `"14"`. |
 | R-03 | El identificador normalizado es **único dentro de su privada**. Dos privadas distintas sí pueden tener una vivienda `"14"` cada una. |
 | R-04 | Un identificador vacío después de normalizar no es válido. |
 | R-05 | El alta de un lote es **todo o nada**. Si un solo identificador del lote es inválido, ya existe en la privada o se repite dentro del mismo lote, no se crea ninguna vivienda. |
@@ -50,10 +50,11 @@ La privada es la unidad de operación de CondominIA. Cada pase, entrada e incide
 | R-07 | Un lote vacío no es válido. |
 | R-08 | El nombre de la privada es obligatorio y, normalizado igual que en R-02, es **único dentro de su sección**. |
 | R-09 | Se guarda el identificador tal como se escribió, para mostrarlo, y también su forma normalizada, para comparar. |
+| R-10 | El nombre de la sección es único dentro de su residencial. Esta historia no crea secciones: la regla se garantiza donde se den de alta (fuera de alcance). |
 
 ## 4. Criterios de aceptación
 
-Los escenarios 1 y 2 vienen de HU-01. Del 3 al 7 salen de las reglas.
+Los escenarios 1 y 2 vienen de HU-01. Del 3 al 8 salen de las reglas.
 
 ```gherkin
 Escenario 1: alta de viviendas
@@ -92,6 +93,11 @@ Escenario 7: privada duplicada en la sección (R-08)
   Dado que la sección "Norte" ya tiene la privada "Los Robles"
   Cuando la administración intenta registrar " los robles " en "Norte"
   Entonces ve el error "La privada Los Robles ya existe en esta sección"
+
+Escenario 8: ceros a la izquierda (R-02, R-03)
+  Dado que la vivienda 14 ya existe en "Los Robles"
+  Cuando la administración intenta dar de alta la vivienda "014"
+  Entonces ve el error "La vivienda 14 ya existe"
 ```
 
 ## 5. Contrato de datos e interfaz
@@ -102,7 +108,7 @@ Escenario 7: privada duplicada en la sección (R-08)
 
 | # | Tema | Estado |
 |---|---|---|
-| P-01 | ¿`"014"` y `"14"` son la misma vivienda? Con R-02 tal como está, **no**. | Abierta |
+| P-01 | ¿`"014"` y `"14"` son la misma vivienda? **Sí**: se eliminan los ceros a la izquierda (R-02, escenario 8). | Resuelta |
 | P-02 | La jerarquía residencial → sección → privada **no está en el PRD v0.3**. Hay que reflejarla en el PRD (§ actores y RF-01). | Cambio pendiente del PRD |
 | P-03 | Renombrar o dar de baja una vivienda, con su registro en la bitácora. Está decidido; queda para la v0.2 de esta spec (tema 4). | Planificada |
 | P-04 | Autenticación (login, activación y recuperación de acceso): ninguna historia la especifica. | Cambio pendiente del PRD |
@@ -111,4 +117,4 @@ Escenario 7: privada duplicada en la sección (R-08)
 
 | Versión | Fecha | Cambio |
 |---|---|---|
-| 0.1 | 2026-11-20 | Primera versión: contexto, reglas R-01 a R-09 y escenarios 1 a 7 |
+| 0.1 | 2026-11-20 | Primera versión: contexto, reglas R-01 a R-10 y escenarios 1 a 8. En la revisión se confirmó R-08, se añadió R-10 y se resolvió P-01 (ceros a la izquierda) |
