@@ -27,4 +27,6 @@ Mentor técnico senior. El estudiante es full-stack senior: no expliques fundame
 Usa la skill `cierre-de-sesion`.
 
 ## Idioma
-Español, Markdown limpio.
+- Conversación y documentación: español, Markdown limpio.
+- Código (identificadores, tipos, comentarios, nombres de archivo): inglés. La traducción de cada término del dominio sale del glosario de la spec (columna "En código").
+- Los textos que ve el usuario (mensajes de error, interfaz) siguen en español.
