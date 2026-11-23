@@ -9,12 +9,12 @@
 
 ## Antes de empezar
 - [x] Sesión 2 fusionada en `main` (PR #3) y rama `sesion-03-sdd` creada.
-- [x] Releer [`docs/backlog/tickets.md`](../../backlog/tickets.md) y la cadena Must T-01 → T-04.
+- [x] Releer [`docs/backlog/tickets.md`](https://github.com/arlequine/condominia/blob/main/docs/backlog/tickets.md) y la cadena Must T-01 → T-04.
 - [ ] Decidir el reajuste del calendario (ver las notas de la sesión).
 
 ## Punto de partida
-- PRD v0.3 de CondominIA en [`docs/prd/prd.md`](../../prd/prd.md).
-- 11 historias con criterios G/W/T en [`docs/backlog/historias.md`](../../backlog/historias.md).
+- PRD v0.3 de CondominIA en [`docs/prd/prd.md`](https://github.com/arlequine/condominia/blob/main/docs/prd/prd.md).
+- 11 historias con criterios G/W/T en [`docs/backlog/historias.md`](https://github.com/arlequine/condominia/blob/main/docs/backlog/historias.md).
 - 17 tickets con prioridad y dependencias.
 - Todavía no hay código ni stack definido.
 
@@ -35,7 +35,7 @@ Se definen al iniciar cada tema, uno por tema.
 Piensa en dos cosas: cuál tiene reglas más interesantes para una spec y cuál se puede implementar sin decidir media arquitectura.
 
 ## Entregable de salida
-- `specs/` con al menos una historia implementada que cumple su spec.
+- `specs/` con al menos una historia implementada que cumple su spec (en el repo [`condominia`](https://github.com/arlequine/condominia)).
 - Un criterio escrito de cuándo no usar SDD.
 
 **Hecho cuando:** el código satisface los criterios de la spec.
@@ -44,6 +44,7 @@ Piensa en dos cosas: cuál tiene reglas más interesantes para una spec y cuál 
 Los contratos se convierten en migraciones (S7) y los criterios, en tests (S4).
 
 ## Notas de la sesión
+- **Separación de repositorios (2026-11-23):** el producto se mudó al repo privado [`condominia`](https://github.com/arlequine/condominia) (`~/condominia`), con su historial: `docs/prd`, `docs/backlog`, `docs/research`, `specs/` y `src/`. El repo nuevo tiene su propio harness: `CLAUDE.md`, el hook de git, la skill `revisar-spec` y el agente `pr-review`. Aquí quedan las lecciones, `CONTEXT.md`, `PLAN.md` y la skill `cierre-de-sesion`. Es un cambio *sugerido*, fuera del temario.
 - **Alcance acordado (2026-11-20):** spec de E1 (HU-01 completa y HU-02 como contrato de roles y permisos); se implementa **HU-01** como lógica de dominio pura en TypeScript, sin framework ni BD. Fuera de alcance: login, sesiones e invitación real (S7), RLS y aislamiento T-03 (S7), seguridad (S13).
 - **Vacío detectado en el PRD:** ninguna historia especifica la autenticación (login, sesión, recuperación de acceso). Se registra como cambio pendiente; candidato para el tema 4 (evolucionar una spec).
 - **Alcance a vigilar:** la S3 necesita algo de código para "implementar una historia", pero el stack completo (Next.js y Supabase) llega en la S7. Al iniciar hay que acordar el mínimo de stack que pide la historia elegida, sin adelantar la S7.

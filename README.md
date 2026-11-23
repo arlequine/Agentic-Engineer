@@ -12,6 +12,7 @@ El proyecto de práctica es **TaskFlow AI**. Se construye una sesión a la vez: 
 | [`PLAN.md`](PLAN.md) | Calendario semanal y guía para adaptarlo a otra persona |
 | [`CLAUDE.md`](CLAUDE.md) | Instrucciones que el agente carga en cada sesión |
 | `docs/lessons/` | Notas, ejercicios y verificación de cada sesión (vive en las ramas de sesión) |
+| [`condominia`](https://github.com/arlequine/condominia) (repo privado) | El producto: PRD, backlog, specs y código. Se separó en la Sesión 3 |
 
 El resto de carpetas aparece conforme avanzan las sesiones. La estructura final esperada está en la sección 7 de `CONTEXT.md`.
 

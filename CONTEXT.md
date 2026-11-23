@@ -35,7 +35,7 @@
 
 Aprender a desarrollar software con agentes de IA (Claude Code) de forma disciplinada: diseñar el entorno de trabajo del agente (harness), pasar de un problema a un PRD y a specs, garantizar calidad con TDD, evals y guardarraíles, construir un producto con IA (RAG y agente propio) y llevarlo a producción con DevSecOps.
 El vehículo es **TaskFlow AI**, construido lección a lección en un repositorio que sirve a la vez como proyecto de estudio y portafolio.
-El producto que se construye es **CondominIA**, una app de control de accesos para privadas residenciales, definida en la Sesión 2 (`docs/prd/prd.md`).
+El producto que se construye es **CondominIA**, una app de control de accesos para privadas residenciales, definida en la Sesión 2. Desde la Sesión 3, el producto (PRD, backlog, specs y código) vive en el repo privado [`condominia`](https://github.com/arlequine/condominia); este repo guarda el seguimiento del curso.
 
 ---
 
@@ -433,6 +433,8 @@ Flujo por sesión:
 Ramas previstas: `sesion-01-harness`, `sesion-02-prd`, `sesion-03-sdd`, `sesion-04-tdd`, `sesion-05-mcp-skills`, `sesion-06-guardarrailes-evals`, `sesion-07-backend`, `sesion-08-frontend`, `sesion-09-rag`, `sesion-10-agente`, `sesion-11-memoria`, `sesion-12-controles-evals`, `sesion-13-seguridad`, `sesion-14-cicd-observabilidad`, `sesion-15-war-room`.
 
 ### Objetivo (referencia, se irá construyendo)
+
+> **Nota (2026-11-23):** esta es la estructura prevista original. Desde la S3 se reparte en dos repos: el producto (`docs/research`, `docs/prd`, `docs/backlog`, `docs/adr`, `specs/`, `src/`, `supabase/`, `tests/`, `mcp-server/`, `.github/`) va en [`condominia`](https://github.com/arlequine/condominia), y aquí quedan `docs/lessons/`, `CONTEXT.md`, `PLAN.md` y el harness del curso.
 
 ```
 Agentic-Engineer/
