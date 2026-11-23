@@ -5,7 +5,7 @@
 | Módulo | 1 · Desarrollo con agentes de IA |
 | Rama | `sesion-03-sdd` |
 | Tiempo estimado | 3.5 h (ver `PLAN.md`) |
-| Estado | Preparada (2026-11-19), por iniciar el 2026-11-20 |
+| Estado | Completada (2026-11-23) |
 
 ## Antes de empezar
 - [x] Sesión 2 fusionada en `main` (PR #3) y rama `sesion-03-sdd` creada.
@@ -19,11 +19,11 @@
 - Todavía no hay código ni stack definido.
 
 ## Temas
-- [ ] La spec como contrato: contexto, reglas y criterios de aceptación
-- [ ] Contratos de datos e interfaces antes de la lógica
-- [ ] Implementar una historia: proponer, revisar el contrato y aplicar
-- [ ] Evolucionar una spec existente y verificar que el código la cumple
-- [ ] Cuándo no conviene usar Spec Driven Development
+- [x] La spec como contrato: contexto, reglas y criterios de aceptación
+- [x] Contratos de datos e interfaces antes de la lógica
+- [x] Implementar una historia: proponer, revisar el contrato y aplicar
+- [x] Evolucionar una spec existente y verificar que el código la cumple
+- [x] Cuándo no conviene usar Spec Driven Development
 
 ## Ejercicios
 Se definen al iniciar cada tema, uno por tema.
