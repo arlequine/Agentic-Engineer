@@ -6,7 +6,8 @@
 | Fecha | 2026-11-23 |
 | Historia | [HU-01](../docs/backlog/historias.md) · Ticket T-01 |
 | Implementa | RF-01 (parcial: privada y viviendas), RNF-04 (auditoría del alta), RNF-05 (aislamiento del alta) |
-| Estado | Borrador (pendiente de revisión) |
+| Estado | Implementada (2026-11-23) |
+| Código | [`src/catalog/`](../src/catalog/) · verificación: `npm run check` (29 escenarios, un test cada uno) |
 
 ## 1. Contexto
 
@@ -449,11 +450,14 @@ interface UnitDeps        { repo: UnitRepository;        ids: IdGenerator; clock
 | P-05 | ¿Se registran también los intentos **rechazados** (por ejemplo, fuera de ámbito) como señal de seguridad? En esta versión, no. | Abierta (S13) |
 | P-06 | ¿Hace falta un límite de operaciones por actor y por tiempo? | Abierta (S13) |
 | P-07 | Los ámbitos de la administración (`AdminScope`) y quién los asigna tienen que aparecer en HU-02 y en el PRD. | Cambio pendiente del PRD |
+| P-08 | ¿Hace falta un **rol de plataforma** (operador de CondominIA) que dé de alta la residencial, sus secciones y su primera administración o mesa directiva, y que configure sus reglas? ¿"Mesa directiva" es lo mismo que "administración"? Hoy lo cubre el supuesto S-01. | Cambio pendiente del PRD |
+| P-09 | Hallado al implementar: R-02 elimina los ceros **después** de quitar espacios, así que `"0 14"` queda `" 14"`, con un espacio al inicio. ¿Se vuelve a recortar o se rechaza? El código aplica R-02 tal como está escrita. | Abierta |
 
 ## 8. Historial
 
 | Versión | Fecha | Cambio |
 |---|---|---|
+| 0.2 | 2026-11-23 | Implementada en `src/catalog/` con sus 29 escenarios en verde. Se añaden P-08 (rol de plataforma) y P-09 (ceros y espacios) |
 | 0.2 | 2026-11-23 | Resultado de `revisar-spec` (nota C): actor y ámbitos (R-14), aislamiento sin revelar existencia (R-15), auditoría atómica (R-16), longitudes y caracteres (R-04, R-08), NFC y acentos (R-02, R-08), columna de origen, sección de seguridad, escenarios 14 a 29 y contrato ampliado (§5.2, §5.5, `Clock`) |
 | 0.1 | 2026-11-20 | Contrato de datos e interfaz (§5) en inglés con glosario de equivalencias; R-08 sin eliminar ceros; R-11 (máx. 500), R-12 (unicidad en persistencia), R-13 (existencia); escenarios 9 a 13 |
 | 0.1 | 2026-11-20 | Primera versión: contexto, reglas R-01 a R-10 y escenarios 1 a 8. En la revisión se confirmó R-08, se añadió R-10 y se resolvió P-01 (ceros a la izquierda) |
