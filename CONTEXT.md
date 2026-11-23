@@ -23,11 +23,11 @@
 
 | Campo | Valor |
 |---|---|
-| Lección en curso | Ninguna. Sesión 2 cerrada (PR pendiente de fusionar); Sesión 3 por iniciar |
-| Última lección completada | Sesión 2 · Del problema al PRD y al backlog (producto: **CondominIA**) |
-| Última actualización | 2026-11-19 |
-| Siguiente paso concreto | Fusionar el PR de `sesion-02-prd` en GitHub. Después, iniciar la Sesión 3 creando `sesion-03-sdd` desde `main` (`git switch main && git pull --ff-only && git switch -c sesion-03-sdd`): primera historia de `docs/backlog/tickets.md` implementada desde spec, empezando por la cadena T-01 → T-04 |
-| Progreso | 2 / 15 sesiones listadas (ver nota del Módulo 6) |
+| Lección en curso | Ninguna. Sesión 3 cerrada (PR de cierre pendiente de fusionar); Sesión 4 por iniciar |
+| Última lección completada | Sesión 3 · Spec Driven Development: HU-01 implementada desde su spec v0.3 en [`condominia`](https://github.com/arlequine/condominia) |
+| Última actualización | 2026-11-23 |
+| Siguiente paso concreto | Fusionar el PR de `sesion-03-sdd` en GitHub. Después, iniciar la Sesión 4 creando `sesion-04-tdd` desde `main` en los dos repos (`git switch main && git pull --ff-only && git switch -c sesion-04-tdd`): llevar los escenarios de las specs a tests con Vitest, empezando por HU-01. Antes, decidir el reajuste del calendario que propone la guía de la S3 |
+| Progreso | 3 / 15 sesiones listadas (ver nota del Módulo 6) |
 
 ---
 
@@ -35,7 +35,7 @@
 
 Aprender a desarrollar software con agentes de IA (Claude Code) de forma disciplinada: diseñar el entorno de trabajo del agente (harness), pasar de un problema a un PRD y a specs, garantizar calidad con TDD, evals y guardarraíles, construir un producto con IA (RAG y agente propio) y llevarlo a producción con DevSecOps.
 El vehículo es **TaskFlow AI**, construido lección a lección en un repositorio que sirve a la vez como proyecto de estudio y portafolio.
-El producto que se construye es **CondominIA**, una app de control de accesos para privadas residenciales, definida en la Sesión 2 (`docs/prd/prd.md`).
+El producto que se construye es **CondominIA**, una app de control de accesos para privadas residenciales, definida en la Sesión 2. Desde la Sesión 3, el producto (PRD, backlog, specs y código) vive en el repo privado [`condominia`](https://github.com/arlequine/condominia); este repo guarda el seguimiento del curso.
 
 ---
 
@@ -70,7 +70,7 @@ Leyenda: `[ ]` pendiente · `[~]` en curso · `[x]` completada
   - El PRD versionado como fuente de verdad del proyecto
   - Épicas, historias de usuario y criterios Given/When/Then
   - Requisitos no funcionales y tickets con prioridad y dependencias
-- [ ] **Sesión 3. Spec Driven Development: de la spec al código**
+- [x] **Sesión 3. Spec Driven Development: de la spec al código**
   - La spec como contrato: contexto, reglas y criterios de aceptación
   - Contratos de datos e interfaces antes de la lógica
   - Implementar una historia: proponer, revisar el contrato y aplicar
@@ -381,7 +381,7 @@ La salida de cada sesión es la entrada de la siguiente. Columnas: **Punto de pa
 ### Actual (solo lo que existe)
 
 ```
-Agentic-Engineer/                    (rama main, tras S2)
+Agentic-Engineer/                    (rama main, tras S3)
 ├── CLAUDE.md                        # reglas de trabajo con el agente
 ├── CONTEXT.md
 ├── PLAN.md
@@ -399,21 +399,17 @@ Agentic-Engineer/                    (rama main, tras S2)
 │       └── cierre-de-sesion/
 │           └── SKILL.md             # cierre de sesión por fases
 └── docs/
-    ├── research/
-    │   ├── jtbd.md                  # jobs-to-be-done del Job A (accesos)
-    │   └── competencia.md           # competencia y pricing, con fuentes
-    ├── prd/
-    │   └── prd.md                   # PRD versionado de CondominIA (v0.3)
-    ├── backlog/
-    │   ├── historias.md             # épicas e historias con criterios G/W/T
-    │   └── tickets.md               # tickets con MoSCoW y dependencias
     └── lessons/
         ├── sesion-01-harness/
         │   ├── README.md            # guía de la sesión
         │   └── comparativa.md       # misma tarea con y sin harness
-        └── sesion-02-prd/
+        ├── sesion-02-prd/
+        │   └── README.md            # guía de la sesión
+        └── sesion-03-sdd/
             └── README.md            # guía de la sesión
 ```
+
+El producto vive desde la S3 en el repo privado [`condominia`](https://github.com/arlequine/condominia) (rama `main`, tras S3): `docs/research/`, `docs/prd/`, `docs/backlog/`, `docs/sdd/cuando-no-usar-sdd.md`, `specs/hu-01-alta-privada-viviendas.md`, `src/catalog/` (dominio, casos de uso, adaptador en memoria y tests) y su propio harness (`CLAUDE.md`, hook de git, skill `revisar-spec` y agente `pr-review`).
 
 ### Estrategia de ramas (una rama por sesión)
 
@@ -433,6 +429,8 @@ Flujo por sesión:
 Ramas previstas: `sesion-01-harness`, `sesion-02-prd`, `sesion-03-sdd`, `sesion-04-tdd`, `sesion-05-mcp-skills`, `sesion-06-guardarrailes-evals`, `sesion-07-backend`, `sesion-08-frontend`, `sesion-09-rag`, `sesion-10-agente`, `sesion-11-memoria`, `sesion-12-controles-evals`, `sesion-13-seguridad`, `sesion-14-cicd-observabilidad`, `sesion-15-war-room`.
 
 ### Objetivo (referencia, se irá construyendo)
+
+> **Nota (2026-11-23):** esta es la estructura prevista original. Desde la S3 se reparte en dos repos: el producto (`docs/research`, `docs/prd`, `docs/backlog`, `docs/adr`, `specs/`, `src/`, `supabase/`, `tests/`, `mcp-server/`, `.github/`) va en [`condominia`](https://github.com/arlequine/condominia), y aquí quedan `docs/lessons/`, `CONTEXT.md`, `PLAN.md` y el harness del curso.
 
 ```
 Agentic-Engineer/
@@ -481,6 +479,22 @@ Agentic-Engineer/
 ## 8. Bitácora de lecciones
 
 > De la más reciente a la más antigua. Añadir entradas arriba; nunca reescribir las anteriores.
+
+### 2026-11-23 · Sesión 3 — Spec Driven Development: de la spec al código
+
+- **Agregado al repositorio:** guía `docs/lessons/sesion-03-sdd/README.md`. En [`condominia`](https://github.com/arlequine/condominia) (PR #1 y #2): spec `specs/hu-01-alta-privada-viviendas.md` v0.3 (16 reglas, 48 escenarios, contrato de datos e interfaz y sección de seguridad); `src/catalog/` con el alta de privada y el alta de lotes de viviendas como dominio puro, adaptador en memoria y un test por escenario; `docs/sdd/cuando-no-usar-sdd.md`; harness propio del repo (`CLAUDE.md`, hook de git, skill `revisar-spec` y agente `pr-review`).
+- **Decisiones tomadas:**
+  - Implementar HU-01 como lógica de dominio pura en TypeScript, sin framework ni BD, porque el stack completo llega en la S7.
+  - Mover el producto al repo `condominia` y dejar aquí solo el seguimiento del curso (cambio *sugerido*, fuera del temario).
+  - Spec v0.3, a partir de la revisión de código: rechazar los identificadores que tras normalizar no empiezan por letra o dígito (`"0 14"`), lista blanca de caracteres (letras latinas, dígitos, espacio, `-` y `/`), medir la longitud sobre la forma normalizada y guardar el texto mostrado recortado. Las tres extensiones (lista blanca también en nombres, recorte también en identificadores y rechazo de `"-14"`) se aceptaron.
+  - Toda historia sigue SDD; el trabajo que no es una historia puede ir sin spec si cumple el criterio escrito.
+- **Dudas pendientes:**
+  - P-10 de la spec: si `"0A"` debe normalizarse a `"A"`.
+  - Cambios pendientes del PRD: jerarquía residencial → sección → privada (P-02), autenticación (P-04), ámbitos de la administración (P-07) y rol de plataforma (P-08).
+  - Reajuste del calendario propuesto en la guía de la S3, todavía sin aprobar.
+- **Aprendizajes clave:** cómo usar SDD y cuándo no usarlo, para proyectos en los que no se quiere arriesgar a adivinar.
+- **Entregable verificado:** sí — en `main` de `condominia`, la spec de HU-01 v0.3 está implementada, sus 48 escenarios tienen un test con el mismo nombre (comprobado con `diff`) y `npm run check` pasa 48/48 en una copia limpia; el criterio de cuándo no usar SDD está en `docs/sdd/cuando-no-usar-sdd.md`.
+- **Horas reales:** 3.5 h (estimadas en PLAN.md: 3.5 h)
 
 ### 2026-11-19 · Sesión 2 — Del problema al PRD y al backlog
 
@@ -544,6 +558,7 @@ Estado: ⬜ no instalado · 🟡 instalado sin configurar · ✅ instalado y con
 | Agente de código | Claude Code (CLAUDE.md, skills, hooks, subagentes, plan mode) | S1 | ✅ |
 | Protocolos | Model Context Protocol (MCP) | S1, S5, S10 | 🟡 |
 | Control de versiones / CI | Git, GitHub, GitHub Actions | S1, S6, S14 | 🟡 |
+| Lenguaje y tests mínimos | TypeScript estricto y `node:test` (`npm run check`), en `condominia` — *sugerido, el temario no los nombra; Vitest llega en S4* | S3 | ✅ |
 | Testing | Vitest | S4 | ⬜ |
 | Testing | Playwright | S8, S14 | ⬜ |
 | Framework web | Next.js 16 (App Router), React | S7, S8 | ⬜ |
