@@ -23,11 +23,11 @@
 
 | Campo | Valor |
 |---|---|
-| Lección en curso | Sesión 4 · Revisión adversarial, TDD y documentación viva (iniciada el 2026-11-24) |
-| Última lección completada | Sesión 3 · Spec Driven Development: HU-01 implementada desde su spec v0.3 en [`condominia`](https://github.com/arlequine/condominia) |
+| Lección en curso | Ninguna. Sesión 4 cerrada (PR de cierre pendiente de fusionar en los dos repos); Sesión 5 por iniciar |
+| Última lección completada | Sesión 4 · Revisión adversarial, TDD y documentación viva: suite Vitest sin falsa cobertura (Stryker 93.19 %), HU-02 iniciada con TDD, hooks que fuerzan el ciclo, ADRs y revisión adversarial arbitrada en [`condominia`](https://github.com/arlequine/condominia) |
 | Última actualización | 2026-11-24 |
-| Siguiente paso concreto | Tema 1 de la S4: medir la falsa cobertura de los 48 tests de HU-01 (cobertura y mutation testing) antes de migrar la suite a Vitest |
-| Progreso | 3 / 15 sesiones listadas (ver nota del Módulo 6) |
+| Siguiente paso concreto | Fusionar los PR de `sesion-04-tdd` en los dos repos. Después, iniciar la Sesión 5 creando `sesion-05-mcp-skills` desde `main` en los dos repos (`git switch main && git pull --ff-only && git switch -c sesion-05-mcp-skills`): servidor MCP propio y Skill de Tech Lead |
+| Progreso | 4 / 15 sesiones listadas (ver nota del Módulo 6) |
 
 ---
 
@@ -79,7 +79,7 @@ Leyenda: `[ ]` pendiente · `[~]` en curso · `[x]` completada
 
 ### Módulo 2 · Calidad y gobierno del agente de código (3 sesiones · 19 temas)
 
-- [ ] **Sesión 4. Revisión adversarial, TDD y documentación viva**
+- [x] **Sesión 4. Revisión adversarial, TDD y documentación viva**
   - Pruebas en verde que casi no cubren nada: cómo detectar la falsa cobertura
   - TDD: el test como contrato, escrito antes del código a partir de los criterios del PRD
   - Pruebas de integración desde los criterios de aceptación, en rojo primero
@@ -409,7 +409,7 @@ Agentic-Engineer/                    (rama main, tras S3)
             └── README.md            # guía de la sesión
 ```
 
-El producto vive desde la S3 en el repo privado [`condominia`](https://github.com/arlequine/condominia) (rama `main`, tras S3): `docs/research/`, `docs/prd/`, `docs/backlog/`, `docs/sdd/cuando-no-usar-sdd.md`, `specs/hu-01-alta-privada-viviendas.md`, `src/catalog/` (dominio, casos de uso, adaptador en memoria y tests) y su propio harness (`CLAUDE.md`, hook de git, skill `revisar-spec` y agente `pr-review`).
+El producto vive desde la S3 en el repo privado [`condominia`](https://github.com/arlequine/condominia) (rama `main`, tras S4): `docs/research/`, `docs/prd/`, `docs/backlog/`, `docs/sdd/cuando-no-usar-sdd.md`, `docs/adr/` (ADR 0001–0004 y plantilla), `docs/arquitectura.md` (diagramas Mermaid), `docs/calidad/` (mutantes vivos e informe de revisión adversarial), `specs/hu-01-alta-privada-viviendas.md` y `specs/hu-02-residentes-guardias.md`, `src/catalog/` y `src/accounts/` (dominio, casos de uso, adaptadores en memoria, tests de unidad, de aceptación y de contrato), `src/specs.test.ts`, `vitest.config.ts`, `stryker.config.json`, `.github/pull_request_template.md` y su propio harness (`CLAUDE.md`, hooks de git y de TDD con sus pruebas, skill `revisar-spec` y agente `pr-review`).
 
 ### Estrategia de ramas (una rama por sesión)
 
@@ -479,6 +479,26 @@ Agentic-Engineer/
 ## 8. Bitácora de lecciones
 
 > De la más reciente a la más antigua. Añadir entradas arriba; nunca reescribir las anteriores.
+
+### 2026-11-24 · Sesión 4 — Revisión adversarial, TDD y documentación viva
+
+- **Agregado al repositorio:** calendario corrido un día en `PLAN.md`. En [`condominia`](https://github.com/arlequine/condominia): suite migrada a Vitest con umbrales de cobertura; Stryker con corte del 85 %; spec de HU-01 v0.3.1 (escenarios 49–54); tests de unidad de `authorization` y `normalize`; suites de contrato de los repositorios del catálogo y de cuentas; spec `specs/hu-02-residentes-guardias.md` v0.1.1 (14 reglas, 40 escenarios, nota B) con los escenarios 1, 4, 5 y 38 implementados con TDD en `src/accounts/`; `src/specs.test.ts` (specs ↔ tests); hooks `exigir-verde.sh`, `exigir-test-primero.sh` y `no-debilitar-tests.sh` con 50 casos de regresión; `docs/adr/` (0001–0004), `docs/arquitectura.md`, `docs/calidad/mutantes-s4.md`, `docs/calidad/revision-adversarial-s4.md` y plantilla de PR.
+- **Decisiones tomadas:**
+  - Correr el calendario un día: la S5 el jueves 26 y la S6 el sábado 28.
+  - Quitar el chequeo de rol de `canManage*`: el rol se comprueba una sola vez, en el caso de uso.
+  - Para HU-02: invitar y desactivar; el correo como único dato de contacto; el guardia asignado a una sección; varios residentes por vivienda, cada uno en una sola vivienda.
+  - Aprobar la spec de HU-02 con nota B.
+  - Cerrar el hueco del adaptador con una suite de contrato y no achicando el puerto.
+  - Hacer los hooks 2 y 3 en vez de recortarlos.
+  - Corregir los 10 hallazgos reales de la revisión adversarial.
+  - No insistir en fechas ni en la carga semanal: las horas reales se juntan y se analizan al terminar el curso.
+- **Dudas pendientes:**
+  - HU-02: P-03 (nombre de la persona), P-05 (límites con concurrencia) y P-07 ("vivienda disponible"); P-04, P-08 y P-09 quedan para la S13.
+  - Si se juntan los commits `53a6826` y `84f9edc` de `condominia` (el primero no pasa los umbrales de cobertura por sí solo).
+  - Sugeridos para la S6: proteger `.claude/` con reglas de permisos, un hook `Stop` y llevar `npm run mutation` a CI. Para la S7: F11 de la revisión (contrato con base relativa y rama muerta del doble).
+- **Aprendizajes clave:** generar los tests con ayuda del agente a partir de una spec ya establecida da más claridad sobre el desarrollo; es preferible tener el test antes de desarrollar.
+- **Entregable verificado:** sí — en una copia limpia de `sesion-04-tdd` de `condominia`, `npm run check` pasa 111/111 con 100 % de líneas y funciones; Stryker da 93.19 % (corte 85 %) con los 34 mutantes vivos clasificados; ADRs y `docs/arquitectura.md` van en el PR; el informe de la revisión adversarial con sus 14 hallazgos arbitrados está en `docs/calidad/revision-adversarial-s4.md`; reintroducir el defecto F4 hace fallar el escenario 38.
+- **Horas reales:** 2 h (estimadas en PLAN.md: 4 h)
 
 ### 2026-11-23 · Sesión 3 — Spec Driven Development: de la spec al código
 
@@ -558,8 +578,9 @@ Estado: ⬜ no instalado · 🟡 instalado sin configurar · ✅ instalado y con
 | Agente de código | Claude Code (CLAUDE.md, skills, hooks, subagentes, plan mode) | S1 | ✅ |
 | Protocolos | Model Context Protocol (MCP) | S1, S5, S10 | 🟡 |
 | Control de versiones / CI | Git, GitHub, GitHub Actions | S1, S6, S14 | 🟡 |
-| Lenguaje y tests mínimos | TypeScript estricto y `node:test` (`npm run check`), en `condominia` — *sugerido, el temario no los nombra; Vitest llega en S4* | S3 | ✅ |
-| Testing | Vitest | S4 | ⬜ |
+| Lenguaje y tests mínimos | TypeScript estricto y `node:test` (`npm run check`), en `condominia` — *sugerido, el temario no los nombra*. Reemplazado por Vitest en la S4 | S3 | ✅ |
+| Testing | Vitest, con cobertura v8 y umbrales (`npm run check`), en `condominia` | S4 | ✅ |
+| Testing | Stryker (mutation testing, `npm run mutation`, corte 85 %), en `condominia` — *el temario lo pide como concepto; la herramienta es sugerida* | S4 | ✅ |
 | Testing | Playwright | S8, S14 | ⬜ |
 | Framework web | Next.js 16 (App Router), React | S7, S8 | ⬜ |
 | UI | Tailwind, Shadcn/UI | S8 | ⬜ |
