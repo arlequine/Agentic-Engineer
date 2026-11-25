@@ -10,7 +10,7 @@
 ## Antes de empezar
 - [x] Sesión 2 fusionada en `main` (PR #3) y rama `sesion-03-sdd` creada.
 - [x] Releer [`docs/backlog/tickets.md`](https://github.com/arlequine/condominia/blob/main/docs/backlog/tickets.md) y la cadena Must T-01 → T-04.
-- [ ] Decidir el reajuste del calendario (ver las notas de la sesión).
+- [x] Decidir el reajuste del calendario (ver las notas de la sesión).
 
 ## Punto de partida
 - PRD v0.3 de CondominIA en [`docs/prd/prd.md`](https://github.com/arlequine/condominia/blob/main/docs/prd/prd.md).
@@ -48,7 +48,7 @@ Los contratos se convierten en migraciones (S7) y los criterios, en tests (S4).
 - **Alcance acordado (2026-11-20):** spec de E1 (HU-01 completa y HU-02 como contrato de roles y permisos); se implementa **HU-01** como lógica de dominio pura en TypeScript, sin framework ni BD. Fuera de alcance: login, sesiones e invitación real (S7), RLS y aislamiento T-03 (S7), seguridad (S13).
 - **Vacío detectado en el PRD:** ninguna historia especifica la autenticación (login, sesión, recuperación de acceso). Se registra como cambio pendiente; candidato para el tema 4 (evolucionar una spec).
 - **Alcance a vigilar:** la S3 necesita algo de código para "implementar una historia", pero el stack completo (Next.js y Supabase) llega en la S7. Al iniciar hay que acordar el mínimo de stack que pide la historia elegida, sin adelantar la S7.
-- **Propuesta de reajuste del calendario**, *pendiente de aprobar*. Vamos unas tres sesiones atrasados: S3, S4 y S5 tocaban del 16 al 20 de noviembre. Siguiendo `PLAN.md` §6 (usar la holgura y no comprimir dos sesiones pesadas el mismo día), se desplaza todo una semana:
+- **Propuesta de reajuste del calendario**, *aprobada el 2026-11-24 con una variante: corrida un día (S4 mar 24, S5 jue 26, S6 sáb 28); el calendario vigente está en `PLAN.md` §2*. Vamos unas tres sesiones atrasados: S3, S4 y S5 tocaban del 16 al 20 de noviembre. Siguiendo `PLAN.md` §6 (usar la holgura y no comprimir dos sesiones pesadas el mismo día), se desplaza todo una semana:
 
   | Semana | Sesiones |
   |---|---|

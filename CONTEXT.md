@@ -23,10 +23,10 @@
 
 | Campo | Valor |
 |---|---|
-| Lección en curso | Ninguna. Sesión 3 cerrada (PR de cierre pendiente de fusionar); Sesión 4 por iniciar |
+| Lección en curso | Sesión 4 · Revisión adversarial, TDD y documentación viva (iniciada el 2026-11-24) |
 | Última lección completada | Sesión 3 · Spec Driven Development: HU-01 implementada desde su spec v0.3 en [`condominia`](https://github.com/arlequine/condominia) |
-| Última actualización | 2026-11-23 |
-| Siguiente paso concreto | Fusionar el PR de `sesion-03-sdd` en GitHub. Después, iniciar la Sesión 4 creando `sesion-04-tdd` desde `main` en los dos repos (`git switch main && git pull --ff-only && git switch -c sesion-04-tdd`): llevar los escenarios de las specs a tests con Vitest, empezando por HU-01. Antes, decidir el reajuste del calendario que propone la guía de la S3 |
+| Última actualización | 2026-11-24 |
+| Siguiente paso concreto | Tema 1 de la S4: medir la falsa cobertura de los 48 tests de HU-01 (cobertura y mutation testing) antes de migrar la suite a Vitest |
 | Progreso | 3 / 15 sesiones listadas (ver nota del Módulo 6) |
 
 ---
@@ -48,7 +48,7 @@ El producto que se construye es **CondominIA**, una app de control de accesos pa
 | Stack que domina | Full-stack (tecnologías concretas por precisar) |
 | Fecha objetivo | Antes de terminar diciembre de 2026 |
 
-**Ritmo elegido:** 3 sesiones por semana (lunes, miércoles y viernes; sábado de reserva), ~3.3 h por sesión, ~50 h en total. Las 15 sesiones van del jueves 12 de noviembre al lunes 14 de diciembre, con holgura del 15 al 31 de diciembre. Calendario completo en [`PLAN.md`](PLAN.md).
+**Ritmo elegido:** 3 sesiones por semana (lunes, miércoles y viernes; sábado de reserva), ~3.3 h por sesión, ~50 h en total. Las 15 sesiones van del jueves 12 de noviembre al viernes 18 de diciembre, con holgura del 19 al 31 de diciembre (reajustado el 2026-11-24). Calendario completo en [`PLAN.md`](PLAN.md).
 
 ---
 
@@ -491,7 +491,7 @@ Agentic-Engineer/
 - **Dudas pendientes:**
   - P-10 de la spec: si `"0A"` debe normalizarse a `"A"`.
   - Cambios pendientes del PRD: jerarquía residencial → sección → privada (P-02), autenticación (P-04), ámbitos de la administración (P-07) y rol de plataforma (P-08).
-  - Reajuste del calendario propuesto en la guía de la S3, todavía sin aprobar.
+  - ~~Reajuste del calendario propuesto en la guía de la S3.~~ Aprobado el 2026-11-24, corrido un día: S4 mar 24, S5 jue 26, S6 sáb 28 y desde el 30 nov lunes, miércoles y viernes (ver `PLAN.md` §2).
 - **Aprendizajes clave:** cómo usar SDD y cuándo no usarlo, para proyectos en los que no se quiere arriesgar a adivinar.
 - **Entregable verificado:** sí — en `main` de `condominia`, la spec de HU-01 v0.3 está implementada, sus 48 escenarios tienen un test con el mismo nombre (comprobado con `diff`) y `npm run check` pasa 48/48 en una copia limpia; el criterio de cuándo no usar SDD está en `docs/sdd/cuando-no-usar-sdd.md`.
 - **Horas reales:** 3.5 h (estimadas en PLAN.md: 3.5 h)
